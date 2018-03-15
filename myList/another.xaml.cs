@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,29 @@ namespace myList
         public another()
         {
             this.InitializeComponent();
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigated += OnNavigated;
+            SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+        }
+
+        private void OnBackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame == null)
+                return;
+            if (rootFrame.CanGoBack && e.Handled == false)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+            }
+        }
+
+        private void OnNavigated(object sender, NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                ((Frame)sender).CanGoBack ?
+                AppViewBackButtonVisibility.Visible :
+                AppViewBackButtonVisibility.Collapsed;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -36,14 +60,6 @@ namespace myList
             this.detail.Text = myList[1];
             if(myList[2] != "")
                 this.datepick.Date = DateTimeOffset.Parse(myList[2]);
-        }
-
-        private void back2_Click(object sender, RoutedEventArgs e)
-        {
-            Frame frame = new Frame();
-            frame.Navigate(typeof(MainPage), "");
-            Window.Current.Content = frame;
-            Window.Current.Activate();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

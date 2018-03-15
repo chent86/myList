@@ -38,12 +38,14 @@ namespace myList
         public MainPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
             //ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200, 100));
             num = 1;
             checking_id = -1;      //已勾选的计划的id号，当要进行页面跳转时，确定要传递的信息
             int i;
             for (i = 0; i < 100; i++)
                 undo_array[i] = 0;
+            this.title1.Text = "100";
         }
 
         private void go1_Click(object sender, RoutedEventArgs e)
@@ -54,7 +56,7 @@ namespace myList
                 package[0] = "";
                 package[1] = "";
                 package[2] = "";
-                Frame frame = new Frame();
+                Frame frame = Window.Current.Content as Frame;
                 if(checking_id != -1)
                 {
                     package[0] = title_array[checking_id];

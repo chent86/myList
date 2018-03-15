@@ -25,9 +25,5 @@
                 <Button Content="Delete" FontSize="24" Width="100" Height="50" HorizontalAlignment="Center"></Button>
             </StackPanel>
         </ScrollViewer>
-
-        <CommandBar VerticalAlignment="Bottom" >
-            <AppBarButton Icon="Back" x:Name="back2" VerticalAlignment="Top" Click="back2_Click"></AppBarButton>
-        </CommandBar>
     </Grid>
 </Page>
