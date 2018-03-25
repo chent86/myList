@@ -111,6 +111,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\1.jpg" />
+    <Content Include="Assets\2.jpg" />
+    <Content Include="Assets\bird.jpg" />
+    <Content Include="Assets\bird1.jpg" />
+    <Content Include="Assets\tree.jpg" />
+    <Content Include="Assets\tree.png" />
+    <Content Include="Assets\wood.jpg" />
+    <Content Include="Assets\yuzhou.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

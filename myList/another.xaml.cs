@@ -5,6 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -12,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
@@ -23,9 +27,19 @@ namespace myList
     /// </summary>
     public sealed partial class another : Page
     {
+        int updateing;
+        string o_title;
+        string o_detail;
+        String o_date;
+        BitmapImage o_img;
         public another()
         {
             this.InitializeComponent();
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/wood.jpg", UriKind.Absolute));
+            this.bar.Background = imageBrush;
+            this.main.Background = imageBrush;
+            
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigated += OnNavigated;
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
@@ -33,14 +47,25 @@ namespace myList
 
         private void OnBackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
-            if (rootFrame == null)
-                return;
-            if (rootFrame.CanGoBack && e.Handled == false)
-            {
-                e.Handled = true;
-                rootFrame.GoBack();
-            }
+            //Frame rootFrame = Window.Current.Content as Frame;
+            //if (rootFrame == null)
+            //    return;
+            //if (rootFrame.CanGoBack && e.Handled == false)
+            //{
+            //    e.Handled = true;
+            //    rootFrame.GoBack();
+            //}
+            package tmp = new package();
+            Frame frame = Window.Current.Content as Frame;
+            tmp.title = "";
+            tmp.detail = "";
+            tmp.date = "";
+            updateing = -1;
+            tmp.checking = updateing;
+
+            frame.Navigate(typeof(MainPage), tmp);
+            Window.Current.Content = frame;
+            Window.Current.Activate();
         }
 
         private void OnNavigated(object sender, NavigationEventArgs e)
@@ -54,12 +79,21 @@ namespace myList
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            //将传过来的数据 类型转换一下
-            var myList = e.Parameter as List<string>;
-            this.title1.Text = myList[0];
-            this.detail.Text = myList[1];
-            if(myList[2] != "")
-                this.datepick.Date = DateTimeOffset.Parse(myList[2]);
+            package tmp = (package)e.Parameter;
+            if (tmp.checking != -1)
+            {
+                this.title1.Text = o_title = tmp.title;            //更新数据
+                this.detail.Text = o_detail = tmp.detail;
+                o_date = tmp.date;
+                this.pic.Source = o_img = tmp.image;
+                this.datepick.Date = DateTimeOffset.Parse(tmp.date);
+                this.create.Content = "Update";
+                this.delete.Opacity = 1;
+            }
+            else
+                this.delete.Opacity = 0;
+            updateing = tmp.checking;
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -84,18 +118,90 @@ namespace myList
                 result = "success!";
             msgDialog.Content = result;
             await msgDialog.ShowAsync();
+            //Frame rootFrame = Window.Current.Content as Frame;
+            //if (rootFrame == null)
+            //    return;
+            //if (rootFrame.CanGoBack)
+            //{
+            //    localSettings.Values["title"] = this.title1.Text;
+            //    localSettings.Values["detail"] = this.detail.Text;
+            //    localSettings.Values["date"] = this.datepick.Date.ToString();
+            //    localSettings.Values["id"] = updateing.ToString();
+            //    rootFrame.GoBack();
+            //}
+            if(result == "success!")
+            {
+                package tmp = new package();
+                Frame frame = Window.Current.Content as Frame;
+                tmp.title = this.title1.Text;
+                tmp.detail = this.detail.Text;
+                tmp.date = this.datepick.Date.ToString();
+                tmp.image = (BitmapImage)this.pic.Source;
+                if (updateing == -1)
+                    updateing = -2;
+                tmp.checking = updateing;
+
+                frame.Navigate(typeof(MainPage), tmp);
+                Window.Current.Content = frame;
+                Window.Current.Activate();
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            title1.Text = "";                              //cancel按钮
-            detail.Text = "";
-            datepick.Date = DateTime.Now;
+            if(updateing == -1)
+            {
+
+                title1.Text = "";
+                detail.Text = "";
+                Uri tmp_uri = new Uri("/Assets/bird.jpg");
+                pic.Source = new BitmapImage(tmp_uri);
+                datepick.Date = DateTime.Now;
+            }
+            else
+            {
+                title1.Text = o_title;                              //cancel按钮
+                detail.Text = o_detail;
+                pic.Source = o_img;
+                datepick.Date = DateTimeOffset.Parse(o_date);
+            }
         }
 
         private void sli_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             this.pic.Width = sli.Value + 300;   //滑块调整图片大小
+        }
+        private async void Select_picture(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker openPicker = new FileOpenPicker();
+            openPicker.ViewMode = PickerViewMode.Thumbnail;
+            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            openPicker.FileTypeFilter.Add(".jpg");
+            openPicker.FileTypeFilter.Add(".jpeg");
+            openPicker.FileTypeFilter.Add(".png");
+
+            StorageFile file = await openPicker.PickSingleFileAsync();
+            if (file != null)
+            {
+                // Application now has read/write access to the picked file
+                IRandomAccessStream ir = await file.OpenAsync(FileAccessMode.Read);
+                BitmapImage bi = new BitmapImage();
+                await bi.SetSourceAsync(ir);
+                pic.Source = bi;
+            }
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (updateing == -1)
+                return;
+            package tmp = new package();
+            Frame frame = Window.Current.Content as Frame;
+            tmp.checking = -3;
+            tmp.title = updateing.ToString();
+            frame.Navigate(typeof(MainPage), tmp);
+            Window.Current.Content = frame;
+            Window.Current.Activate();
         }
     }
 }

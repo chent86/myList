@@ -373,8 +373,26 @@
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\1.jpg">
       <PackagePath>Assets\1.jpg</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\2.jpg">
+      <PackagePath>Assets\2.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\bird.jpg">
+      <PackagePath>Assets\bird.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\bird1.jpg">
+      <PackagePath>Assets\bird1.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\tree.jpg">
+      <PackagePath>Assets\tree.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\wood.jpg">
+      <PackagePath>Assets\wood.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\yuzhou.jpg">
+      <PackagePath>Assets\yuzhou.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\tree.png">
+      <PackagePath>Assets\tree.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -402,6 +420,9 @@
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Debug\myList.xr.xml">
       <PackagePath>myList.xr.xml</PackagePath>

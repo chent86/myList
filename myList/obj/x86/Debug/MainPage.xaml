@@ -6,76 +6,72 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RenderTransformOrigin="0.531,0.309">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition x:ConnectionId='1' x:Name="right"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="9*"></RowDefinition>
-        </Grid.RowDefinitions>
-
+    <Grid x:ConnectionId='1' Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="main">
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:ConnectionId='2' x:Name="VisualStateGroup">
-                <VisualState x:ConnectionId='3' x:Name="VisualStateLandscape">
-                    <VisualState.Setters>
-                        <Setter Target="test.Opacity" Value="1"/>
-                        <Setter Target="right.Width" Value="*"/>
-                    </VisualState.Setters>
+            <VisualStateGroup>
+                <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="800"/>
+                        <AdaptiveTrigger MinWindowWidth="1200" />
                     </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:ConnectionId='4' x:Name="VisualStatePortrait">
+
                     <VisualState.Setters>
-                        <Setter Target="test.Opacity" Value="0"/>
-                        <Setter Target="right.Width" Value="0"/>
+                        <Setter Target="create_part.Opacity" Value="1" />
+                        <Setter Target="create_part.Width" Value="600" />
                     </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
-                    </VisualState.StateTriggers>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <ScrollViewer Grid.ColumnSpan="1">
-            <StackPanel x:ConnectionId='14' Grid.Column="0" x:Name="list">
-                <TextBlock x:ConnectionId='15' x:Name="title" Width="200" Text="MyLists" FontSize="36" FontStyle="Normal"
-                        Height="48" Margin="-180,150,3,0" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" Width="600" HorizontalAlignment="Center">
-                    <!--<CheckBox x:Name="check1" Width="50" Height="50" FontSize="36" HorizontalAlignment="Center" Margin="100,0,2,0">
-                    </CheckBox>
-                    <Image Source="ms-appx:/Assets/1.jpg"  Width="50" Height="50" HorizontalAlignment="Center" Margin="-100,0,0,0" >
-                    </Image>
-                    <TextBlock FontSize="15" Width="50" Height="50" Text="TODO"  Margin="-100,1,-1,0" VerticalAlignment="Center" Padding="2,15,0,0"></TextBlock>
-                    <TextBlock x:Name="todo" Width="200" Height="50" Text="pre" FontSize="36" HorizontalAlignment="Left" Margin="0,0,3,0"/>
-                    <Line Name="line1" Opacity="0" X1="-20" Y1="30" X2="200" Y2="30" Stroke="Black" StrokeThickness="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="-200,0,0,0"/>
-                    <Button Name="delete1" Width="50" Height="50" Background="Red" HorizontalAlignment="Left"/>-->
+
+        <Grid x:ConnectionId='2' Name="todo_list" Width="500" HorizontalAlignment="Left" Visibility="Visible" Margin="80,0,0,0" >
+            <TextBlock x:ConnectionId='15' x:Name="title" Width="200" Text="MyLists" FontSize="36" FontStyle="Normal"
+                            Height="48" Margin="0,100,3,0" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <ScrollViewer x:ConnectionId='16' Name="list_scroll" Padding="0,20,0,0" BorderThickness="1" BorderBrush="Black" Height="600" Width="500" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <StackPanel x:ConnectionId='17' x:Name="list">
+                    <!--<StackPanel Orientation="Horizontal" Width="500" HorizontalAlignment="Left" Margin="10,0,0,0">
+                        <CheckBox  Width="32" Height="32" FontSize="36" >
+                        </CheckBox>
+                        <Image Source="Assets/bird.jpg"  Width="90" Height="90" HorizontalAlignment="Center" Margin="-90,0,0,0" />
+
+                        <TextBlock  Padding="30,0,0,0" Width="200" Height="50" Text="pre" FontSize="36" HorizontalAlignment="Left"/>
+                        <Line  Stretch="Fill" Opacity="1" X1="0"  X2="400"  Stroke="Black" StrokeThickness="2" Margin="-400,0,0,30"/>
+                        <AppBarButton  Icon="Setting" IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="100,0,0,0">
+                            <AppBarButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Edit"/>
+                                    <MenuFlyoutItem Text="Delete"/>
+                                </MenuFlyout>
+                            </AppBarButton.Flyout>
+                        </AppBarButton>-->
+                    <!--</StackPanel>-->
+
                 </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
+                </ScrollViewer>
+            </Grid>
 
-
-
-        <ScrollViewer Grid.Column="1">
-            <StackPanel x:ConnectionId='6' Orientation="Vertical" Grid.Column="1" Name="test" Margin="0,-1,100,0" HorizontalAlignment="Right">
-                <Image x:ConnectionId='7' Name="pic" Source="ms-appx:/Assets/1.jpg" Width="300"></Image>
-                <Slider x:ConnectionId='8' Name="sli" Width="300" Margin="0,10,0,0"                                   ></Slider>
-                <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left" Margin="100,50,0,-4"></TextBlock>
-                <TextBox x:ConnectionId='9' x:Name="title1" Width="450" Height="50" HorizontalAlignment="Left" VerticalAlignment="Stretch" Canvas.Left="100" Canvas.Top="300" Canvas.ZIndex="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="100,0,0,0"></TextBox>
-                <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Margin="100,0,0,0" Canvas.ZIndex="-1"/>
-                <TextBox x:ConnectionId='10' x:Name="detail" Width="450" Height="300" Margin="100,0,0,0" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
-                <TextBlock Width="150" Height="50" Text="Due Date" FontSize="36"  HorizontalAlignment="Left" Margin="100,0,0,0"></TextBlock>
-                <DatePicker x:ConnectionId='11' x:Name="datepick" Width="450" Height="35" Margin="100,0,0,0"></DatePicker>
-                <StackPanel Orientation="Horizontal" BorderBrush="White">
-                    <Button x:ConnectionId='12' x:Name="create" Content="Create" Width="100" Height="50" HorizontalAlignment="Left" FontSize="24" Margin="100,0,0,0"                     />
-                    <Button x:ConnectionId='13' Content="Cancel" Width="100" Height="50" HorizontalAlignment="Right" FontSize="24" VerticalAlignment="Center" Margin="250,0,0,0"                       />
+        <ScrollViewer x:ConnectionId='3'  Name="create_part" Width="0" Margin="550,0,0,0" Height="800" BorderThickness="1" BorderBrush="Black" Opacity="0">
+            <Grid  HorizontalAlignment="Stretch" Width="600">
+                <StackPanel x:ConnectionId='6' Orientation="Vertical"  Name="test" HorizontalAlignment="Center">
+                    <Image x:ConnectionId='7' Name="pic" Source="Assets/bird.jpg" Width="300" Margin="0,50,0,0"/>
+                    <Button x:ConnectionId='8' Content="Select" Width="60" Height="30" HorizontalAlignment="Right" FontSize="20" Padding="0"                       ></Button>
+                    <Slider x:ConnectionId='9' Name="sli" Width="300" Margin="0,10,0,0"                                   ></Slider>
+                    <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left" Margin="0,50,-1,-4"></TextBlock>
+                    <TextBox x:ConnectionId='10' x:Name="title1" Width="450" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" ></TextBox>
+                    <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Canvas.ZIndex="-1"/>
+                    <TextBox x:ConnectionId='11' x:Name="detail" Width="450" Height="300" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+                    <TextBlock Width="150" Height="50" Text="Due Date" FontSize="36"  HorizontalAlignment="Left" Margin="50,0,0,0"></TextBlock>
+                    <DatePicker x:ConnectionId='12' x:Name="datepick" Width="450" Height="35" HorizontalAlignment="Center" ></DatePicker>
+                    <StackPanel Orientation="Horizontal" BorderBrush="White" Width="450">
+                        <Button x:ConnectionId='13' x:Name="create" Content="Create" Width="100" Height="50" HorizontalAlignment="Left" FontSize="24"                      />
+                        <Button x:ConnectionId='14' Content="Cancel" Width="100" Height="50" HorizontalAlignment="Right" FontSize="24" VerticalAlignment="Center" Margin="250,0,0,0"                       />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </Grid>
         </ScrollViewer>
-        <CommandBar VerticalAlignment="Bottom" Grid.ColumnSpan="2">
-            <AppBarButton x:ConnectionId='5' Icon="Add" x:Name="go1" VerticalAlignment="Top"                  ></AppBarButton>
+        <!--</ScrollViewer>-->
+        <CommandBar x:ConnectionId='4' VerticalAlignment="Bottom" Name="bar">
+            <AppBarButton x:ConnectionId='5' Icon="Add" x:Name="go1"                  ></AppBarButton>
         </CommandBar>
     </Grid>
+    <!--</ScrollViewer>-->
 </Page>
 

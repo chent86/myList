@@ -31,13 +31,25 @@
     <AppXManifest Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-15T09:14:32.626</Modified>
+      <Modified>2018-03-22T09:10:30.533</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\1.jpg">
       <PackagePath>Assets\1.jpg</PackagePath>
       <Modified>2018-03-15T07:53:50.737</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\2.jpg">
+      <PackagePath>Assets\2.jpg</PackagePath>
+      <Modified>2018-03-13T06:53:45.092</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\bird.jpg">
+      <PackagePath>Assets\bird.jpg</PackagePath>
+      <Modified>2018-03-20T09:28:15.088</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\bird1.jpg">
+      <PackagePath>Assets\bird1.jpg</PackagePath>
+      <Modified>2018-03-20T09:31:31.463</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -68,10 +80,26 @@
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-03-15T07:53:50.754</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\tree.jpg">
+      <PackagePath>Assets\tree.jpg</PackagePath>
+      <Modified>2018-03-20T09:43:06.996</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\tree.png">
+      <PackagePath>Assets\tree.png</PackagePath>
+      <Modified>2018-03-20T09:49:40.562</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-03-15T07:53:50.756</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\wood.jpg">
+      <PackagePath>Assets\wood.jpg</PackagePath>
+      <Modified>2018-03-20T09:54:02.015</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\yuzhou.jpg">
+      <PackagePath>Assets\yuzhou.jpg</PackagePath>
+      <Modified>2018-03-20T09:14:14.886</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
@@ -79,20 +107,20 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\myList.dll">
       <PackagePath>myList.dll</PackagePath>
-      <Modified>2018-03-15T09:14:32.094</Modified>
+      <Modified>2018-03-22T09:10:29.878</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\myList.exe">
       <PackagePath>myList.exe</PackagePath>
-      <Modified>2018-03-15T09:14:32.565</Modified>
+      <Modified>2018-03-22T09:10:30.498</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\myList.pdb">
       <PackagePath>myList.pdb</PackagePath>
-      <Modified>2018-03-15T09:14:32.557</Modified>
+      <Modified>2018-03-22T09:10:30.494</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-15T08:43:58.639</Modified>
+      <Modified>2018-03-22T09:00:20.110</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
