@@ -6,7 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="main">
+        
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -27,6 +37,11 @@
                             Height="48" Margin="0,100,3,0" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <ScrollViewer Name="list_scroll" Padding="0,20,0,0" BorderThickness="1" BorderBrush="Black" Height="600" Width="500" HorizontalAlignment="Left" Margin="0,0,0,0">
                 <StackPanel x:Name="list">
+                    <StackPanel.ChildrenTransitions>
+                        <TransitionCollection>
+                            <AddDeleteThemeTransition/>
+                        </TransitionCollection>
+                    </StackPanel.ChildrenTransitions>
                     <!--<StackPanel Orientation="Horizontal" Width="500" HorizontalAlignment="Left" Margin="10,0,0,0">
                         <CheckBox  Width="32" Height="32" FontSize="36" >
                         </CheckBox>

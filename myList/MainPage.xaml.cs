@@ -48,8 +48,6 @@ namespace myList
         public int[] undo_array = new int[100];
         public BitmapImage[] image_array = new BitmapImage[100];
 
-        Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -418,6 +416,9 @@ namespace myList
                 title1.Text = "";
                 detail.Text = "";                                               //详情页面取消函数
                 datepick.Date = DateTime.Now;                                   //创建时取消
+                var tmp_uri = new Uri(BaseUri, "/Assets/bird.jpg");
+                BitmapImage tmp_image = new BitmapImage(tmp_uri);
+                pic.Source = tmp_image;
             }
             else if (this.create.Content.ToString() == "Upgrade")
             {
@@ -425,6 +426,7 @@ namespace myList
                 this.title1.Text = title_array[id];
                 this.detail.Text = detail_array[id];
                 this.datepick.Date = DateTimeOffset.Parse(date_array[id]);      //修改时取消
+                pic.Source = image_array[id];
             }
         }
 

@@ -154,7 +154,8 @@ namespace myList
 
                 title1.Text = "";
                 detail.Text = "";
-                Uri tmp_uri = new Uri("/Assets/bird.jpg");
+                var tmp_uri = new Uri(BaseUri, "/Assets/bird.jpg");
+                BitmapImage tmp_image = new BitmapImage(tmp_uri);
                 pic.Source = new BitmapImage(tmp_uri);
                 datepick.Date = DateTime.Now;
             }
