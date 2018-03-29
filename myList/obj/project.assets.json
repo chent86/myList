@@ -25576,11 +25576,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lenovo\\Desktop\\仙草\\myList\\myList\\myList.csproj",
+      "projectUniqueName": "C:\\Users\\lenovo\\Desktop\\myList\\myList\\myList.csproj",
       "projectName": "myList",
-      "projectPath": "C:\\Users\\lenovo\\Desktop\\仙草\\myList\\myList\\myList.csproj",
+      "projectPath": "C:\\Users\\lenovo\\Desktop\\myList\\myList\\myList.csproj",
       "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lenovo\\Desktop\\仙草\\myList\\myList\\obj\\",
+      "outputPath": "C:\\Users\\lenovo\\Desktop\\myList\\myList\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

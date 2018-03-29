@@ -132,17 +132,19 @@ namespace myList.myList_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[4];
-            _typeNameTable[0] = "myList.another";
+            _typeNameTable = new string[5];
+            _typeNameTable[0] = "myList.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "myList.MainPage";
+            _typeNameTable[3] = "myList.TodoManager";
+            _typeNameTable[4] = "Object";
 
-            _typeTable = new global::System.Type[4];
-            _typeTable[0] = typeof(global::myList.another);
+            _typeTable = new global::System.Type[5];
+            _typeTable[0] = typeof(global::myList.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::myList.MainPage);
+            _typeTable[3] = typeof(global::myList.TodoManager);
+            _typeTable[4] = typeof(global::System.Object);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -177,8 +179,8 @@ namespace myList.myList_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_another() { return new global::myList.another(); }
-        private object Activate_3_MainPage() { return new global::myList.MainPage(); }
+        private object Activate_0_MainPage() { return new global::myList.MainPage(); }
+        private object Activate_3_TodoManager() { return new global::myList.TodoManager(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -190,9 +192,10 @@ namespace myList.myList_XamlTypeInfo
             switch (typeIndex)
             {
 
-            case 0:   //  myList.another
+            case 0:   //  myList.MainPage
                 userType = new global::myList.myList_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_0_another;
+                userType.Activator = Activate_0_MainPage;
+                userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -205,22 +208,46 @@ namespace myList.myList_XamlTypeInfo
                 xamlType = new global::myList.myList_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 3:   //  myList.MainPage
-                userType = new global::myList.myList_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_3_MainPage;
+            case 3:   //  myList.TodoManager
+                userType = new global::myList.myList_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
+                break;
+
+            case 4:   //  Object
+                xamlType = new global::myList.myList_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
             return xamlType;
         }
 
 
+        private object get_0_MainPage_ViewModel(object instance)
+        {
+            var that = (global::myList.MainPage)instance;
+            return that.ViewModel;
+        }
+        private void set_0_MainPage_ViewModel(object instance, object Value)
+        {
+            var that = (global::myList.MainPage)instance;
+            that.ViewModel = (global::myList.TodoManager)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::myList.myList_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::myList.myList_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "myList.MainPage.ViewModel":
+                userType = (global::myList.myList_XamlTypeInfo.XamlUserType)GetXamlTypeByName("myList.MainPage");
+                xamlMember = new global::myList.myList_XamlTypeInfo.XamlMember(this, "ViewModel", "myList.TodoManager");
+                xamlMember.Getter = get_0_MainPage_ViewModel;
+                xamlMember.Setter = set_0_MainPage_ViewModel;
+                break;
+            }
             return xamlMember;
         }
     }

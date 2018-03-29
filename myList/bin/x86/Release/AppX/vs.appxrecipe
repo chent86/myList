@@ -8,9 +8,9 @@
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
     <SolutionConfiguration>Release|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
-    <PackageIdentityName>847583a8-5a9f-4ef6-92d4-73f1a2c593d4</PackageIdentityName>
+    <PackageIdentityName>86674a98-5494-4b10-b2c7-32cf77b85c9b</PackageIdentityName>
     <PackageIdentityPublisher>CN=ct</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\lenovo\Desktop\仙草\myList\myList\obj\x86\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\lenovo\Desktop\myList\myList\obj\x86\Release\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,109 +18,77 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\AppX</LayoutDir>
-    <RegisteredManifestChecksum>8B02C80216BA3020A7A0CC0CEAEC1C461D806E4B693C1EB6669D91BD2E51405A</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>847583a8-5a9f-4ef6-92d4-73f1a2c593d4_1.0.0.0_x86__9sdw6ty2x539e</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>847583a8-5a9f-4ef6-92d4-73f1a2c593d4_9sdw6ty2x539e!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>847583a8-5a9f-4ef6-92d4-73f1a2c593d4</RegisteredPackageID>
+    <LayoutDir>C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\AppX</LayoutDir>
+    <RegisteredManifestChecksum>CFEB7D51062FE95EB858A00BFAF9546822BACA043B8F3186B94C6F5770BFB44D</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>86674a98-5494-4b10-b2c7-32cf77b85c9b_1.0.0.0_x86__9sdw6ty2x539e</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>86674a98-5494-4b10-b2c7-32cf77b85c9b_9sdw6ty2x539e!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>86674a98-5494-4b10-b2c7-32cf77b85c9b</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=ct</RegisteredPackagePublisher>
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-22T09:10:30.533</Modified>
+      <Modified>2018-03-28T04:24:19.208</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\1.jpg">
-      <PackagePath>Assets\1.jpg</PackagePath>
-      <Modified>2018-03-15T07:53:50.737</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\2.jpg">
-      <PackagePath>Assets\2.jpg</PackagePath>
-      <Modified>2018-03-13T06:53:45.092</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\bird.jpg">
-      <PackagePath>Assets\bird.jpg</PackagePath>
-      <Modified>2018-03-20T09:28:15.088</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\bird1.jpg">
-      <PackagePath>Assets\bird1.jpg</PackagePath>
-      <Modified>2018-03-20T09:31:31.463</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2018-03-15T07:53:50.738</Modified>
+      <Modified>2018-03-08T05:17:02.587</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-15T07:53:50.740</Modified>
+      <Modified>2018-03-08T05:17:02.587</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-15T07:53:50.750</Modified>
+      <Modified>2018-03-08T05:17:02.587</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-15T07:53:50.751</Modified>
+      <Modified>2018-03-08T05:17:02.587</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-15T07:53:50.753</Modified>
+      <Modified>2018-03-08T05:17:02.587</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-15T07:53:50.754</Modified>
+      <Modified>2018-03-08T05:17:02.587</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\tree.jpg">
-      <PackagePath>Assets\tree.jpg</PackagePath>
-      <Modified>2018-03-20T09:43:06.996</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\tree.png">
-      <PackagePath>Assets\tree.png</PackagePath>
-      <Modified>2018-03-20T09:49:40.562</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-15T07:53:50.756</Modified>
+      <Modified>2018-03-08T05:17:02.587</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\wood.jpg">
-      <PackagePath>Assets\wood.jpg</PackagePath>
-      <Modified>2018-03-20T09:54:02.015</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\Assets\yuzhou.jpg">
-      <PackagePath>Assets\yuzhou.jpg</PackagePath>
-      <Modified>2018-03-20T09:14:14.886</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\clrcompression.dll">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
       <Modified>2016-06-13T12:51:30.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\myList.dll">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\myList.dll">
       <PackagePath>myList.dll</PackagePath>
-      <Modified>2018-03-22T09:10:29.878</Modified>
+      <Modified>2018-03-28T04:24:19.051</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\myList.exe">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\myList.exe">
       <PackagePath>myList.exe</PackagePath>
-      <Modified>2018-03-22T09:10:30.498</Modified>
+      <Modified>2018-03-28T04:24:19.197</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\myList.pdb">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\myList.pdb">
       <PackagePath>myList.pdb</PackagePath>
-      <Modified>2018-03-22T09:10:30.494</Modified>
+      <Modified>2018-03-28T04:24:19.195</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\仙草\myList\myList\bin\x86\Release\ilc\resources.pri">
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-22T09:00:20.110</Modified>
+      <Modified>2018-03-28T04:16:41.736</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
     <Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition>
@@ -16,9 +17,17 @@
         </TransitionCollection>
     </Page.Transitions>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="main">
-        
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
+                <VisualState x:Name="VisualStateMin600">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Set_Visibility.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
                 <VisualState>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="1200" />
@@ -27,41 +36,37 @@
                     <VisualState.Setters>
                         <Setter Target="create_part.Opacity" Value="1" />
                         <Setter Target="create_part.Width" Value="600" />
+                        <Setter Target="Set_Visibility.Visibility" Value="Visible" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
         <Grid Name="todo_list" Width="500" HorizontalAlignment="Left" Visibility="Visible" Margin="80,0,0,0" >
-            <TextBlock x:Name="title" Width="200" Text="MyLists" FontSize="36" FontStyle="Normal"
+            <TextBlock Width="200" Text="MyLists" FontSize="36" FontStyle="Normal"
                             Height="48" Margin="0,100,3,0" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ScrollViewer Name="list_scroll" Padding="0,20,0,0" BorderThickness="1" BorderBrush="Black" Height="600" Width="500" HorizontalAlignment="Left" Margin="0,0,0,0">
-                <StackPanel x:Name="list">
-                    <StackPanel.ChildrenTransitions>
-                        <TransitionCollection>
-                            <AddDeleteThemeTransition/>
-                        </TransitionCollection>
-                    </StackPanel.ChildrenTransitions>
-                    <!--<StackPanel Orientation="Horizontal" Width="500" HorizontalAlignment="Left" Margin="10,0,0,0">
-                        <CheckBox  Width="32" Height="32" FontSize="36" >
-                        </CheckBox>
-                        <Image Source="Assets/bird.jpg"  Width="90" Height="90" HorizontalAlignment="Center" Margin="-90,0,0,0" />
 
-                        <TextBlock  Padding="30,0,0,0" Width="200" Height="50" Text="pre" FontSize="36" HorizontalAlignment="Left"/>
-                        <Line  Stretch="Fill" Opacity="1" X1="0"  X2="400"  Stroke="Black" StrokeThickness="2" Margin="-400,0,0,30"/>
-                        <AppBarButton  Icon="Setting" IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="100,0,0,0">
-                            <AppBarButton.Flyout>
-                                <MenuFlyout>
-                                    <MenuFlyoutItem Text="Edit"/>
-                                    <MenuFlyoutItem Text="Delete"/>
-                                </MenuFlyout>
-                            </AppBarButton.Flyout>
-                        </AppBarButton>-->
-                    <!--</StackPanel>-->
-
-                </StackPanel>
-                </ScrollViewer>
-            </Grid>
+            <ScrollViewer Name="list_scroll" Padding="0,20,0,0" BorderThickness="1" BorderBrush="Black" Height="600" Width="{Binding Path=Width, ElementName=todo_list}" HorizontalAlignment="Left" Margin="0,0,0,0">
+                <ListView ItemsSource="{x:Bind ViewModel.DefaultTodo}"  ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalAlignment="Top" ItemClick="ListView_ItemClick" IsItemClickEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:Todo">
+                            <Grid Height="100" Width="{Binding Path=Width, ElementName=todo_list}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="42"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox Grid.Column="0" VerticalAlignment="Center" Height="32" Width="32" Click="{x:Bind Check}" IsChecked="False"/>
+                                <Image Grid.Column="1" Source="{x:Bind Picture, Mode=TwoWay}" Height="90" Width="90" Visibility="{Binding Path=Visibility, ElementName=Set_Visibility}"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind Title, Mode=TwoWay}" VerticalAlignment="Center" Foreground="Black" Margin="10,0,0,0"/>
+                                <Line Grid.Column="2" Stretch="Fill" Stroke="Black" StrokeThickness="2" X1="1" VerticalAlignment="Center" Visibility="{x:Bind Visi, Mode=TwoWay}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
 
         <ScrollViewer  Name="create_part" Width="0" Margin="550,0,0,0" Height="800" BorderThickness="1" BorderBrush="Black" Opacity="0">
             <Grid  HorizontalAlignment="Stretch" Width="600">
@@ -70,22 +75,27 @@
                     <Button Content="Select" Width="60" Height="30" HorizontalAlignment="Right" FontSize="20" Padding="0" Click="Select_picture"></Button>
                     <Slider Name="sli" Width="300" Margin="0,10,0,0" ValueChanged="Slider_ValueChanged"></Slider>
                     <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left" Margin="0,50,-1,-4"></TextBlock>
-                    <TextBox x:Name="title1" Width="450" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" ></TextBox>
+                    <TextBox x:Name="title" Width="450" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" ></TextBox>
                     <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Canvas.ZIndex="-1"/>
                     <TextBox x:Name="detail" Width="450" Height="300" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
                     <TextBlock Width="150" Height="50" Text="Due Date" FontSize="36"  HorizontalAlignment="Left" Margin="50,0,0,0"></TextBlock>
                     <DatePicker x:Name="datepick" Width="450" Height="35" HorizontalAlignment="Center" ></DatePicker>
                     <StackPanel Orientation="Horizontal" BorderBrush="White" Width="450">
-                        <Button x:Name="create" Content="Create" Width="100" Height="50" HorizontalAlignment="Left" FontSize="24"  Click="Button_Click"/>
-                        <Button Content="Cancel" Width="100" Height="50" HorizontalAlignment="Right" FontSize="24" VerticalAlignment="Center" Margin="250,0,0,0" Click="Button_Click_1"/>
+                        <Button x:Name="create" Content="Create" Width="100" Height="50" HorizontalAlignment="Left" FontSize="24"  Click="Create_Button"/>
+                        <Button Content="Cancel" Width="100" Height="50" HorizontalAlignment="Right" FontSize="24" VerticalAlignment="Center" Margin="250,0,0,0" Click="Cancel_Button"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
         <!--</ScrollViewer>-->
         <CommandBar VerticalAlignment="Bottom" Name="bar">
-            <AppBarButton Icon="Add" x:Name="go1" Click="go1_Click"></AppBarButton>
+            <AppBarButton Icon="Delete" x:Name="delete" Click="delete_Click" Opacity="0"></AppBarButton>
+            <AppBarButton Icon="Add" x:Name="go" Click="go_Click"></AppBarButton>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Upload Background" Name="change_background" Click="change_background_Click" />
+            </CommandBar.SecondaryCommands>
         </CommandBar>
+        <Image x:Name="Set_Visibility" Visibility="Collapsed"/>
     </Grid>
     <!--</ScrollViewer>-->
 </Page>
