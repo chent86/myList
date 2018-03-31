@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-28T13:03:49.095</Modified>
+      <Modified>2018-03-31T14:34:31.419</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\myList.exe">
       <PackagePath>entrypoint\myList.exe</PackagePath>
-      <Modified>2018-03-28T13:03:47.398</Modified>
+      <Modified>2018-03-31T14:34:31.171</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\NuGetPackages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -497,53 +497,53 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\bird.jpg">
       <PackagePath>Assets\bird.jpg</PackagePath>
-      <Modified>2018-03-28T04:52:00.561</Modified>
+      <Modified>2018-03-29T08:57:41.149</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\wood.jpg">
       <PackagePath>Assets\wood.jpg</PackagePath>
-      <Modified>2018-03-28T05:04:16.461</Modified>
+      <Modified>2018-03-29T08:57:41.151</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2018-03-27T14:48:51.196</Modified>
+      <Modified>2018-03-29T08:57:41.159</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-03-29T08:57:41.140</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-03-29T08:57:41.142</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-03-29T08:57:41.143</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-03-29T08:57:41.144</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-03-29T08:57:41.145</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-03-29T08:57:41.145</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-03-29T08:57:41.146</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\myList.xr.xml">
       <PackagePath>myList.xr.xml</PackagePath>
-      <Modified>2018-03-28T12:36:36.651</Modified>
+      <Modified>2018-03-31T08:38:25.970</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -552,11 +552,11 @@
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-28T13:03:48.445</Modified>
+      <Modified>2018-03-31T08:38:27.059</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\Core\myList.exe">
       <PackagePath>myList.exe</PackagePath>
-      <Modified>2018-03-28T13:03:49.082</Modified>
+      <Modified>2018-03-31T14:34:31.411</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

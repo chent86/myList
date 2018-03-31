@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -56,7 +57,8 @@ namespace myList
                 {
                     this.todo_list.Width = 500;
                 }
-            };
+            };           
+
         }
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -64,11 +66,11 @@ namespace myList
             current = e.ClickedItem as Todo;
             if (Window.Current.Bounds.Width < 1200)
             {
-                package tmp = new package();
-                tmp.processing = current;
-                tmp.type = 1;
+                Singleton tmp = Singleton.Instance;
+                tmp.set_todo(current);
+                tmp.set_signal("update");
                 Frame frame = Window.Current.Content as Frame;    //点击计划
-                frame.Navigate(typeof(NewPage), tmp);
+                frame.Navigate(typeof(NewPage), "");
                 Window.Current.Content = frame;
                 Window.Current.Activate();
             }
@@ -80,26 +82,82 @@ namespace myList
                 this.datepick.Date = DateTimeOffset.Parse(current.Date);
                 this.create.Content = "Update";
                 this.delete.Opacity = 1;
+                
             }
 
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            bool suspending = ((App)App.Current).issuspend;
+            if(suspending)
+            {
+                ApplicationDataCompositeValue composite = new ApplicationDataCompositeValue();
+                composite["title"] = title.Text;
+                composite["detail"] = detail.Text;
+                composite["date"] = datepick.Date;
+                composite["picture"] = this.pic.DataContext;
+                string result = "";
+                int i = 0;
+                for (i = 0; i < this.ViewModel.DefaultTodo.Count(); i++)
+                    if (this.ViewModel.DefaultTodo.ElementAt(i).Is_check == true)
+                        result += "1";
+                    else
+                        result += "0";
+                composite["check"] = result;
+                ApplicationData.Current.LocalSettings.Values["mainpage"] = composite;
+            }
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            reset_RightPart();
+            if(e.NavigationMode == NavigationMode.New)
+            {
+                ApplicationData.Current.LocalSettings.Values.Remove("mainpage");
+            }
+            else if (ApplicationData.Current.LocalSettings.Values.ContainsKey("mainpage"))
+            {
+                var composite = ApplicationData.Current.LocalSettings.Values["mainpage"] as ApplicationDataCompositeValue;
+                title.Text = (string)composite["title"];
+                detail.Text = (string)composite["detail"];
+                datepick.Date = (DateTimeOffset)composite["date"];
+
+                string result = (string)composite["check"];
+                int i = 0;
+                for (i = 0; i < result.Length; i++)
+                    if (result[i] == '0')
+                        this.ViewModel.DefaultTodo.ElementAt(i).Is_check = false;
+                    else
+                        this.ViewModel.DefaultTodo.ElementAt(i).Is_check = true;
+
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                string image = "tmp.jpg";
+                StorageFile logoImage = await appInstalledFolder.GetFileAsync(image);
+
+                IRandomAccessStream ir = await logoImage.OpenAsync(FileAccessMode.Read);
+                BitmapImage bi = new BitmapImage();
+                await bi.SetSourceAsync(ir);
+                if ((string)composite["picture"] != "default")
+                    pic.Source = bi;
+
+                ApplicationData.Current.LocalSettings.Values.Remove("mainpage");
+
+            }
 
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 
-            base.OnNavigatedTo(e);
-            string signal = (string)e.Parameter;
-            if (signal == "0")
+            base.OnNavigatedTo(e);            
+            Singleton tmp = Singleton.Instance;
+            if (tmp.get_signal() == "add")
             {
                 this.ViewModel.DefaultTodo.Add(current);     //0:添加项  1:修改项或者普通返回  2:删除项
             }
-            else if(signal == "1")
+            else if(tmp.get_signal() == "modify_or_simple")
             {
                 //do nothing
             }
-            else if(signal == "2")
+            else if(tmp.get_signal() == "delete")
             {
                 this.ViewModel.DefaultTodo.Remove(current);
             }
@@ -110,6 +168,7 @@ namespace myList
             title.Text = detail.Text = "";
             pic.Source = default_image;
             datepick.Date = DateTime.Now;
+            this.pic.DataContext = "default";
         }
 
         private void Create_Button(object sender, RoutedEventArgs e)
@@ -189,6 +248,9 @@ namespace myList
                 BitmapImage bi = new BitmapImage();
                 await bi.SetSourceAsync(ir);
                 pic.Source = bi;
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFile copiedFile = await file.CopyAsync(appInstalledFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
+                pic.DataContext = "selected_picture";
             }
         }
 
@@ -212,12 +274,13 @@ namespace myList
         {
             if (Window.Current.Bounds.Width < 1200)
             {
-                package tmp = new package();
-                current = new Todo{};
-                tmp.processing = current;
-                tmp.type = 0;                                             
+                current = new Todo{};                                          
+                Singleton tmp = Singleton.Instance;
+                tmp.set_todo(current);
+                tmp.set_signal("simple");
+                
                 Frame frame = Window.Current.Content as Frame;                   //页面跳转
-                frame.Navigate(typeof(NewPage), tmp);
+                frame.Navigate(typeof(NewPage), "");
                 Window.Current.Content = frame;
                 Window.Current.Activate();
             }

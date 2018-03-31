@@ -57,7 +57,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <CheckBox Grid.Column="0" VerticalAlignment="Center" Height="32" Width="32" Click="{x:Bind Check}" IsChecked="False"/>
+                                <CheckBox Grid.Column="0" VerticalAlignment="Center" Height="32" Width="32" IsChecked="{x:Bind Is_check, Mode=TwoWay}"/>
                                 <Image Grid.Column="1" Source="{x:Bind Picture, Mode=TwoWay}" Height="90" Width="90" Visibility="{Binding Path=Visibility, ElementName=Set_Visibility}"/>
                                 <TextBlock Grid.Column="2" Text="{x:Bind Title, Mode=TwoWay}" VerticalAlignment="Center" Foreground="Black" Margin="10,0,0,0"/>
                                 <Line Grid.Column="2" Stretch="Fill" Stroke="Black" StrokeThickness="2" X1="1" VerticalAlignment="Center" Visibility="{x:Bind Visi, Mode=TwoWay}"/>
@@ -72,9 +72,9 @@
             <Grid  HorizontalAlignment="Stretch" Width="600">
                 <StackPanel Orientation="Vertical"  Name="test" HorizontalAlignment="Center">
                     <Image Name="pic" Source="Assets/bird.jpg" Width="300" Margin="0,50,0,0"/>
-                    <Button Content="Select" Width="60" Height="30" HorizontalAlignment="Right" FontSize="20" Padding="0" Click="Select_picture"></Button>
+                    <AppBarButton Icon="Pictures" Label="Select" Width="60" Height="60" HorizontalAlignment="Right" FontSize="20" Padding="0" Click="Select_picture"></AppBarButton>
                     <Slider Name="sli" Width="300" Margin="0,10,0,0" ValueChanged="Slider_ValueChanged"></Slider>
-                    <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left" Margin="0,50,-1,-4"></TextBlock>
+                    <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left"></TextBlock>
                     <TextBox x:Name="title" Width="450" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" ></TextBox>
                     <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Canvas.ZIndex="-1"/>
                     <TextBox x:Name="detail" Width="450" Height="300" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>

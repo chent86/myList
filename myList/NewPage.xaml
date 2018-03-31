@@ -21,7 +21,7 @@
             <StackPanel Orientation="Vertical" Name="test" HorizontalAlignment="Center" Width="600">
                 <Image Name="pic" Source="ms-appx:/Assets/bird.jpg" Width="300" Margin="0,50,0,-1" HorizontalAlignment="Center"></Image>
                 <Slider Name="sli" Width="300" Margin="0,10,0,0" HorizontalAlignment="Center" ValueChanged="sli_ValueChanged"></Slider>
-                <Button Content="Select" Width="60" Height="30" HorizontalAlignment="Right" FontSize="20" Padding="0"  Margin="0,0,100,0" Click="select_Button"></Button>
+                <AppBarButton Icon="Pictures" Label="Select" Width="60" Height="60" HorizontalAlignment="Right" FontSize="20" Padding="0"  Margin="0,0,100,0" Click="select_Button"></AppBarButton>
                 <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left" Margin="75,0,0,-4"></TextBlock>
                 <TextBox x:Name="title" Width="450" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" Canvas.Left="100" Canvas.Top="300" Canvas.ZIndex="1" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
                 <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Margin="75,0,0,0"/>

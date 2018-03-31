@@ -18,6 +18,7 @@ namespace myList
         private ImageSource picture;
         private string date;
         private Windows.UI.Xaml.Visibility visi { get; set; }
+        private Boolean? is_check;
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
@@ -29,7 +30,7 @@ namespace myList
             this.Picture = new BitmapImage(new Uri(path));
             this.date = "2018/5/21 0:10:30 +08:00";
             visi = Windows.UI.Xaml.Visibility.Collapsed;
-            If_ckeck = false;
+            Is_check = false;
         }
 
         public string Title
@@ -88,18 +89,17 @@ namespace myList
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public bool If_ckeck { get; set; }
-        public void Check()
+        public Boolean? Is_check
         {
-            if (If_ckeck == false)
+            get { return this.is_check; }
+            set
             {
-                If_ckeck = true;
-                Visi = Windows.UI.Xaml.Visibility.Visible;
-            }
-            else
-            {
-                If_ckeck = false;
-                Visi = Windows.UI.Xaml.Visibility.Collapsed;
+                this.is_check = value;
+                if (is_check == true)
+                    Visi = Windows.UI.Xaml.Visibility.Visible;
+                else
+                    Visi = Windows.UI.Xaml.Visibility.Collapsed;
+                this.OnPropertyChanged();
             }
         }
 
@@ -118,6 +118,7 @@ namespace myList
                 {
                 });
             }
+            Singleton tmp = Singleton.Instance;
         }
     }
 }

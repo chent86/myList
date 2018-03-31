@@ -38,8 +38,10 @@ namespace myList
             default_image = new BitmapImage(new Uri("ms-appx:///Assets/bird.jpg"));
             this.bar.Background = imageBrush;
             this.main.Background = imageBrush;
+            this.pic.DataContext = "default";
             Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigated += OnNavigated;
+            //rootFrame.Navigated += OnNavigated;
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
         }
 
@@ -53,30 +55,75 @@ namespace myList
 
         private void OnBackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
+            Singleton tmp = Singleton.Instance;
+            tmp.set_signal("modify_or_simple");
             Frame frame = Window.Current.Content as Frame;
-            frame.Navigate(typeof(MainPage), "1");
+            frame.Navigate(typeof(MainPage), "");
             Window.Current.Content = frame;
             Window.Current.Activate();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-            package tmp = (package)e.Parameter;
-            current = tmp.processing;
+            bool suspending = ((App)App.Current).issuspend;
+            if (suspending)
+            {
+                ApplicationDataCompositeValue composite = new ApplicationDataCompositeValue();
+                composite["title"] = title.Text;
+                composite["detail"] = detail.Text;
+                composite["date"] = datepick.Date;
+                composite["picture"] = this.pic.DataContext;
+                ApplicationData.Current.LocalSettings.Values["newpage"] = composite;
+            }
+        }
 
-            if(tmp.type == 0)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                ApplicationData.Current.LocalSettings.Values.Remove("newpage");
+            }
+            else if (ApplicationData.Current.LocalSettings.Values.ContainsKey("newpage"))
+            {
+                var composite = ApplicationData.Current.LocalSettings.Values["newpage"] as ApplicationDataCompositeValue;
+                title.Text = (string)composite["title"];
+                detail.Text = (string)composite["detail"];
+                datepick.Date = (DateTimeOffset)composite["date"];
+
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                string image = "tmp.jpg";
+                StorageFile logoImage = await appInstalledFolder.GetFileAsync(image);
+
+                IRandomAccessStream ir = await logoImage.OpenAsync(FileAccessMode.Read);
+                BitmapImage bi = new BitmapImage();
+                await bi.SetSourceAsync(ir);
+                if ((string)composite["picture"] != "default")
+                    pic.Source = bi;
+
+                ApplicationData.Current.LocalSettings.Values.Remove("newpage");
+
+            }
+
+            base.OnNavigatedTo(e);
+            //package tmp = (package)e.Parameter;
+            //current = tmp.processing;
+
+            Singleton tmp = Singleton.Instance;
+            current = tmp.get_todo();
+
+            if(tmp.get_signal() == "simple")
             {
                 this.Create.Content = "Create";
                 this.delete.Opacity = 0;
             }
-            else if(tmp.type == 1)
+            else if(tmp.get_signal() == "update")
             {
                 this.Create.Content = "Update";
                 this.title.Text = current.Title;
                 this.detail.Text = current.Detail;
                 this.pic.Source = current.Picture;
                 this.datepick.Date = DateTimeOffset.Parse(current.Date);
+                this.delete.Opacity = 1;
             }
         }
 
@@ -102,6 +149,9 @@ namespace myList
                 BitmapImage bi = new BitmapImage();
                 await bi.SetSourceAsync(ir);
                 pic.Source = bi;
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFile copiedFile = await file.CopyAsync(appInstalledFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
+                pic.DataContext = "selected_picture";
             }
         }
 
@@ -130,6 +180,7 @@ namespace myList
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             string result = "";
+            Singleton tmp = Singleton.Instance;
             if (this.title.Text == "")
                 result += "Title can't be empty!\n";
             if (this.detail.Text == "")
@@ -145,8 +196,9 @@ namespace myList
                 current.Date = this.datepick.Date.ToString();
                 current.Picture = this.pic.Source;
                 reset_RightPart();
+                tmp.set_signal("add");
                 Frame frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(MainPage), "0");
+                frame.Navigate(typeof(MainPage), "");
                 Window.Current.Content = frame;
                 Window.Current.Activate();
 
@@ -163,8 +215,9 @@ namespace myList
                 this.Create.Content = "Create";
                 this.delete.Opacity = 0;
 
+                tmp.set_signal("modify_or_simple");
                 Frame frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(MainPage), "1");
+                frame.Navigate(typeof(MainPage), "");
                 Window.Current.Content = frame;
                 Window.Current.Activate();
             }
@@ -181,8 +234,10 @@ namespace myList
 
         private void delete_Click(object sender, RoutedEventArgs e)
         {
+            Singleton tmp = Singleton.Instance;
+            tmp.set_signal("delete");
             Frame frame = Window.Current.Content as Frame;
-            frame.Navigate(typeof(MainPage), "2");
+            frame.Navigate(typeof(MainPage), "");
             Window.Current.Content = frame;
             Window.Current.Activate();
         }
