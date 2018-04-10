@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Notifications;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -26,16 +27,14 @@ namespace myList
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public struct package
-    {
-        public Todo processing;
-        public int type;  // 0 : 普通跳转  // 1: 更新跳转
-    }
+
     public sealed partial class MainPage : Page
     {
         public TodoManager ViewModel { get; set; }
         public Todo current;
         private BitmapImage default_image;
+        public StorageFile tmp_picture;
+        int _count;
         public MainPage()
         {
             this.InitializeComponent();
@@ -46,6 +45,8 @@ namespace myList
             imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/wood.jpg", UriKind.Absolute));   //设置背景图片
             this.main.Background = imageBrush;
             this.bar.Background = imageBrush;
+            tmp_picture = null;
+            this.pic.DataContext = "default";
 
             this.SizeChanged += (s, e) =>
             {
@@ -57,11 +58,10 @@ namespace myList
                 {
                     this.todo_list.Width = 500;
                 }
-            };           
-
+            };
         }
 
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             current = e.ClickedItem as Todo;
             if (Window.Current.Bounds.Width < 1200)
@@ -82,7 +82,16 @@ namespace myList
                 this.datepick.Date = DateTimeOffset.Parse(current.Date);
                 this.create.Content = "Update";
                 this.delete.Opacity = 1;
-                
+                this.share.Opacity = 1;
+                if (current.pic_file != null)
+                {
+                    StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                    StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                    StorageFile copiedFile = await current.pic_file.CopyAsync(assetsFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
+                    pic.DataContext = "select_picture";
+                }
+                else
+                    pic.DataContext = "default";
             }
 
         }
@@ -111,7 +120,6 @@ namespace myList
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            reset_RightPart();
             if(e.NavigationMode == NavigationMode.New)
             {
                 ApplicationData.Current.LocalSettings.Values.Remove("mainpage");
@@ -132,7 +140,7 @@ namespace myList
                         this.ViewModel.DefaultTodo.ElementAt(i).Is_check = true;
 
                 StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                string image = "tmp.jpg";
+                string image = @"Assets\tmp.jpg";
                 StorageFile logoImage = await appInstalledFolder.GetFileAsync(image);
 
                 IRandomAccessStream ir = await logoImage.OpenAsync(FileAccessMode.Read);
@@ -151,7 +159,13 @@ namespace myList
             Singleton tmp = Singleton.Instance;
             if (tmp.get_signal() == "add")
             {
-                this.ViewModel.DefaultTodo.Add(current);     //0:添加项  1:修改项或者普通返回  2:删除项
+                this.ViewModel.DefaultTodo.Add(current);
+                if (current.Picture != null)
+                    pic.DataContext = "select_picture";
+                else
+                    pic.DataContext = "default";
+                add_count();
+                create_tile(current);
             }
             else if(tmp.get_signal() == "modify_or_simple")
             {
@@ -160,6 +174,7 @@ namespace myList
             else if(tmp.get_signal() == "delete")
             {
                 this.ViewModel.DefaultTodo.Remove(current);
+                sub_count();
             }
         }
 
@@ -169,6 +184,7 @@ namespace myList
             pic.Source = default_image;
             datepick.Date = DateTime.Now;
             this.pic.DataContext = "default";
+            tmp_picture = null;
         }
 
         private void Create_Button(object sender, RoutedEventArgs e)
@@ -186,10 +202,13 @@ namespace myList
             {
                 Todo newTodo = new Todo
                 {
-                    Title = title.Text, Detail = detail.Text, Date = datepick.Date.ToString(), Picture = pic.Source
+                    Title = title.Text, Detail = detail.Text, Date = datepick.Date.ToString(), Picture = pic.Source, pic_file = tmp_picture
                 };
                 ViewModel.DefaultTodo.Add(newTodo);
+                add_count();
+                create_tile(newTodo);
                 reset_RightPart();
+
             }
             else if (result == "" && this.create.Content.ToString() == "Update")        //主页面更新项
             {
@@ -197,11 +216,14 @@ namespace myList
                 current.Detail = detail.Text;
                 current.Date = datepick.Date.ToString();
                 current.Picture = pic.Source;
+                if(tmp_picture != null)
+                    current.pic_file = tmp_picture;
 
                 reset_RightPart();
 
                 this.create.Content = "Create";
                 this.delete.Opacity = 0;
+                this.share.Opacity = 0;
                 
             }
 
@@ -249,7 +271,9 @@ namespace myList
                 await bi.SetSourceAsync(ir);
                 pic.Source = bi;
                 StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                StorageFile copiedFile = await file.CopyAsync(appInstalledFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
+                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                StorageFile copiedFile = await file.CopyAsync(assetsFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
+                tmp_picture = file;
                 pic.DataContext = "selected_picture";
             }
         }
@@ -264,6 +288,7 @@ namespace myList
             if(this.delete.Opacity == 1)
             {
                 this.ViewModel.DefaultTodo.Remove(current);
+                sub_count();
                 reset_RightPart();
                 this.delete.Opacity = 0;                                              //删除项
                 this.create.Content = "Create";
@@ -306,6 +331,61 @@ namespace myList
                 imageBrush.ImageSource = bi;
                 this.main.Background = imageBrush;
                 this.bar.Background = new SolidColorBrush(Windows.UI.Colors.Gray);
+            }
+        }
+
+        private void add_count()
+        {
+            _count++;
+            TileService.SetBadgeCountOnTile(_count);
+
+        }
+
+        private void sub_count()
+        {
+            _count--;
+            TileService.SetBadgeCountOnTile(_count);
+        }
+
+        private void create_tile(Todo newtodo)
+        {
+            string pic_path;
+            if (pic.DataContext.ToString() == "default")
+                pic_path = "Assets/bird.jpg";
+            else
+                pic_path = @"Assets/tmp.jpg";
+
+            var xmlDoc = TileService.CreateTiles(newtodo, pic_path);
+            var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+            TileNotification notification = new TileNotification(xmlDoc);
+            updater.Update(notification);
+        }
+
+        private async void share_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.share.Opacity == 1)
+            {
+                var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
+                emailMessage.Subject = "仙草";
+                emailMessage.Body = "哈哈哈哈哈哈哈哈哈哈哈哈";
+                StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                StorageFile attachmentFile;
+                if (current.pic_file == null)
+                    attachmentFile = await assetsFolder.GetFileAsync("bird.jpg");
+                else
+                    attachmentFile = await assetsFolder.GetFileAsync("tmp.jpg");
+                if (attachmentFile != null)
+                {
+                    var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
+                    var attachment = new Windows.ApplicationModel.Email.EmailAttachment(
+                             attachmentFile.Name,
+                             stream);
+                    emailMessage.Attachments.Add(attachment);
+                }
+                await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
             }
         }
     }

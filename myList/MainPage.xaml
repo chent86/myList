@@ -89,6 +89,7 @@
         </ScrollViewer>
         <!--</ScrollViewer>-->
         <CommandBar VerticalAlignment="Bottom" Name="bar">
+            <AppBarButton Icon="Mail" x:Name="share" Click="share_Click" Opacity="0"></AppBarButton>
             <AppBarButton Icon="Delete" x:Name="delete" Click="delete_Click" Opacity="0"></AppBarButton>
             <AppBarButton Icon="Add" x:Name="go" Click="go_Click"></AppBarButton>
             <CommandBar.SecondaryCommands>

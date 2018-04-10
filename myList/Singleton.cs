@@ -25,8 +25,6 @@ namespace myList
 
         private string signal;
 
-        private string sequence;
-
         public void set_todo(Todo current)
         {
             m_todo = current;

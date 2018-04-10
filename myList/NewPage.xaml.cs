@@ -45,13 +45,13 @@ namespace myList
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
         }
 
-        private void OnNavigated(object sender, NavigationEventArgs e)
-        {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                ((Frame)sender).CanGoBack ?
-                AppViewBackButtonVisibility.Visible :
-                AppViewBackButtonVisibility.Collapsed;
-        }
+        //private void OnNavigated(object sender, NavigationEventArgs e)
+        //{
+        //    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+        //        ((Frame)sender).CanGoBack ?
+        //        AppViewBackButtonVisibility.Visible :
+        //        AppViewBackButtonVisibility.Collapsed;
+        //}
 
         private void OnBackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
@@ -72,7 +72,9 @@ namespace myList
                 composite["title"] = title.Text;
                 composite["detail"] = detail.Text;
                 composite["date"] = datepick.Date;
-                composite["picture"] = this.pic.DataContext;
+                composite["picture"] = this.pic.DataContext;   //原本的current已经丢失了
+                Singleton tmp = Singleton.Instance;
+                composite["signal"] = tmp.get_signal();
                 ApplicationData.Current.LocalSettings.Values["newpage"] = composite;
             }
         }
@@ -86,19 +88,24 @@ namespace myList
             else if (ApplicationData.Current.LocalSettings.Values.ContainsKey("newpage"))
             {
                 var composite = ApplicationData.Current.LocalSettings.Values["newpage"] as ApplicationDataCompositeValue;
-                title.Text = (string)composite["title"];
-                detail.Text = (string)composite["detail"];
-                datepick.Date = (DateTimeOffset)composite["date"];
-
-                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                //title.Text = (string)composite["title"];
+                //detail.Text = (string)composite["detail"];
+                //datepick.Date = (DateTimeOffset)composite["date"];
+                Singleton t = Singleton.Instance;
+                t.set_signal((string)composite["signal"]);
+                this.pic.DataContext = (string)composite["picture"];
                 string image = "tmp.jpg";
-                StorageFile logoImage = await appInstalledFolder.GetFileAsync(image);
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                StorageFile logoImage = await assetsFolder.GetFileAsync(image);
 
                 IRandomAccessStream ir = await logoImage.OpenAsync(FileAccessMode.Read);
                 BitmapImage bi = new BitmapImage();
                 await bi.SetSourceAsync(ir);
-                if ((string)composite["picture"] != "default")
-                    pic.Source = bi;
+                if ((string)composite["picture"] == "default")
+                    bi = default_image;
+                DateTimeOffset tmp_date = (DateTimeOffset)composite["date"];
+                t.set_todo(new Todo((string)composite["title"], (string)composite["detail"], (ImageSource)bi, tmp_date.ToString()) {} );
 
                 ApplicationData.Current.LocalSettings.Values.Remove("newpage");
 
@@ -114,16 +121,24 @@ namespace myList
             if(tmp.get_signal() == "simple")
             {
                 this.Create.Content = "Create";
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
                 this.delete.Opacity = 0;
+                this.share.Opacity = 0;
             }
             else if(tmp.get_signal() == "update")
             {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
                 this.Create.Content = "Update";
                 this.title.Text = current.Title;
                 this.detail.Text = current.Detail;
+                if (current.Picture == null)
+                    current.Picture = default_image;
                 this.pic.Source = current.Picture;
+                if (current.pic_file != null)
+                    pic.DataContext = "select_picture";
                 this.datepick.Date = DateTimeOffset.Parse(current.Date);
                 this.delete.Opacity = 1;
+                this.share.Opacity = 1;
             }
         }
 
@@ -150,7 +165,8 @@ namespace myList
                 await bi.SetSourceAsync(ir);
                 pic.Source = bi;
                 StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                StorageFile copiedFile = await file.CopyAsync(appInstalledFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
+                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                StorageFile copiedFile = await file.CopyAsync(assetsFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
                 pic.DataContext = "selected_picture";
             }
         }
@@ -262,6 +278,35 @@ namespace myList
                 imageBrush.ImageSource = bi;
                 this.main.Background = imageBrush;
                 this.bar.Background = new SolidColorBrush(Windows.UI.Colors.Gray);
+            }
+        }
+
+        private async void share_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.share.Opacity == 1)
+            {
+                var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
+                emailMessage.Subject = "仙草";
+                emailMessage.Body = "哈哈哈哈哈哈哈哈哈哈哈哈";
+                StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                StorageFile attachmentFile;
+                var composite = ApplicationData.Current.LocalSettings.Values["newpage"] as ApplicationDataCompositeValue;
+                if (current.pic_file == null && this.pic.DataContext.ToString() != "select_picture")
+                    attachmentFile = await assetsFolder.GetFileAsync("bird.jpg");
+                else
+                    attachmentFile = await assetsFolder.GetFileAsync("tmp.jpg");
+                if (attachmentFile != null)
+                {
+                    var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
+                    var attachment = new Windows.ApplicationModel.Email.EmailAttachment(
+                             attachmentFile.Name,
+                             stream);
+                    emailMessage.Attachments.Add(attachment);
+                }
+                await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
             }
         }
     }

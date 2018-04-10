@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -22,6 +23,8 @@ namespace myList
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
+        public StorageFile pic_file;    //用于保存图片的文件，方便临时存储
+
         public Todo()
         {
             this.Title = "todo";
@@ -31,6 +34,18 @@ namespace myList
             this.date = "2018/5/21 0:10:30 +08:00";
             visi = Windows.UI.Xaml.Visibility.Collapsed;
             Is_check = false;
+            pic_file = null;
+        }
+
+        public Todo(string t, string d, ImageSource p, string da)
+        {
+            this.Title = t;
+            this.Detail = d;
+            this.Picture = p;
+            this.date = da;
+            visi = Windows.UI.Xaml.Visibility.Collapsed;
+            Is_check = false;
+            pic_file = null;
         }
 
         public string Title
@@ -112,13 +127,12 @@ namespace myList
         public TodoManager()
         {
             int i;
-            for(i = 0; i < 8; i++)
-            {
-                this.defaultTodo.Add(new Todo()
-                {
-                });
-            }
-            Singleton tmp = Singleton.Instance;
+            //for(i = 0; i < 8; i++)
+            //{
+            //    this.defaultTodo.Add(new Todo()
+            //    {
+            //    });
+            //}
         }
     }
 }
