@@ -71,7 +71,7 @@
         <ScrollViewer  Name="create_part" Width="0" Margin="550,0,0,0" Height="800" BorderThickness="1" BorderBrush="Black" Opacity="0">
             <Grid  HorizontalAlignment="Stretch" Width="600">
                 <StackPanel Orientation="Vertical"  Name="test" HorizontalAlignment="Center">
-                    <Image Name="pic" Source="Assets/bird.jpg" Width="300" Margin="0,50,0,0"/>
+                    <Image Name="pic" Source="Assets/picture0.jpg" Width="300" Margin="0,50,0,0"/>
                     <AppBarButton Icon="Pictures" Label="Select" Width="60" Height="60" HorizontalAlignment="Right" FontSize="20" Padding="0" Click="Select_picture"></AppBarButton>
                     <Slider Name="sli" Width="300" Margin="0,10,0,0" ValueChanged="Slider_ValueChanged"></Slider>
                     <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left"></TextBlock>

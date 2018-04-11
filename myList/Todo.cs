@@ -23,29 +23,18 @@ namespace myList
 
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public StorageFile pic_file;    //用于保存图片的文件，方便临时存储
+        public string picture_id;
 
         public Todo()
         {
             this.Title = "todo";
             this.detail = "testing";
-            string path = "ms-appx:///Assets/bird.jpg";
+            string path = "ms-appx:///Assets/picture0.jpg";
             this.Picture = new BitmapImage(new Uri(path));
+            this.picture_id = "0";
             this.date = "2018/5/21 0:10:30 +08:00";
             visi = Windows.UI.Xaml.Visibility.Collapsed;
             Is_check = false;
-            pic_file = null;
-        }
-
-        public Todo(string t, string d, ImageSource p, string da)
-        {
-            this.Title = t;
-            this.Detail = d;
-            this.Picture = p;
-            this.date = da;
-            visi = Windows.UI.Xaml.Visibility.Collapsed;
-            Is_check = false;
-            pic_file = null;
         }
 
         public string Title
@@ -127,12 +116,12 @@ namespace myList
         public TodoManager()
         {
             int i;
-            //for(i = 0; i < 8; i++)
-            //{
-            //    this.defaultTodo.Add(new Todo()
-            //    {
-            //    });
-            //}
+            for (i = 0; i < 3; i++)
+            {
+                this.defaultTodo.Add(new Todo()
+                {
+                });
+            }
         }
     }
 }

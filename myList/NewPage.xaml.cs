@@ -29,29 +29,24 @@ namespace myList
     {
         private Todo current;
         private BitmapImage default_image;
+        private Singleton m_singleton;
         public NewPage()
         {
             this.InitializeComponent();
+            m_singleton = Singleton.Instance;
             NavigationCacheMode = NavigationCacheMode.Enabled;    //缓存页面
             ImageBrush imageBrush = new ImageBrush();
             imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/wood.jpg", UriKind.Absolute));
-            default_image = new BitmapImage(new Uri("ms-appx:///Assets/bird.jpg"));
+            default_image = new BitmapImage(new Uri("ms-appx:///Assets/picture0.jpg"));
             this.bar.Background = imageBrush;
             this.main.Background = imageBrush;
-            this.pic.DataContext = "default";
+            this.pic.DataContext = "0";
             Frame rootFrame = Window.Current.Content as Frame;
             //rootFrame.Navigated += OnNavigated;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+            this.pic.DataContext = "0";
         }
-
-        //private void OnNavigated(object sender, NavigationEventArgs e)
-        //{
-        //    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-        //        ((Frame)sender).CanGoBack ?
-        //        AppViewBackButtonVisibility.Visible :
-        //        AppViewBackButtonVisibility.Collapsed;
-        //}
 
         private void OnBackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
         {
@@ -88,13 +83,8 @@ namespace myList
             else if (ApplicationData.Current.LocalSettings.Values.ContainsKey("newpage"))
             {
                 var composite = ApplicationData.Current.LocalSettings.Values["newpage"] as ApplicationDataCompositeValue;
-                //title.Text = (string)composite["title"];
-                //detail.Text = (string)composite["detail"];
-                //datepick.Date = (DateTimeOffset)composite["date"];
-                Singleton t = Singleton.Instance;
-                t.set_signal((string)composite["signal"]);
                 this.pic.DataContext = (string)composite["picture"];
-                string image = "tmp.jpg";
+                string image = "picture"+this.pic.DataContext.ToString()+".jpg";
                 StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
                 StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
                 StorageFile logoImage = await assetsFolder.GetFileAsync(image);
@@ -102,40 +92,52 @@ namespace myList
                 IRandomAccessStream ir = await logoImage.OpenAsync(FileAccessMode.Read);
                 BitmapImage bi = new BitmapImage();
                 await bi.SetSourceAsync(ir);
-                if ((string)composite["picture"] == "default")
-                    bi = default_image;
-                DateTimeOffset tmp_date = (DateTimeOffset)composite["date"];
-                t.set_todo(new Todo((string)composite["title"], (string)composite["detail"], (ImageSource)bi, tmp_date.ToString()) {} );
-
+                pic.Source = bi;
+                title.Text = (string)composite["title"];
+                detail.Text = (string)composite["detail"];
+                datepick.Date = (DateTimeOffset)composite["date"];
+                //DateTimeOffset tmp_date = (DateTimeOffset)composite["date"];
+                //t.set_todo(new Todo
+                //            {
+                //                Title = (string)composite["title"],
+                //                Detail = (string)composite["detail"],
+                //                Date = tmp_date.ToString(),
+                //                Picture = bi,
+                //                picture_id = (string)composite["picture"]
+                //            });
+                //m_singleton.set_signal((string)composite["signal"]);
                 ApplicationData.Current.LocalSettings.Values.Remove("newpage");
 
             }
 
             base.OnNavigatedTo(e);
-            //package tmp = (package)e.Parameter;
-            //current = tmp.processing;
+            current = m_singleton.get_todo();
 
-            Singleton tmp = Singleton.Instance;
-            current = tmp.get_todo();
-
-            if(tmp.get_signal() == "simple")
+            if(m_singleton.get_signal() == "simple")
             {
                 this.Create.Content = "Create";
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
                 this.delete.Opacity = 0;
                 this.share.Opacity = 0;
+                this.pic.DataContext = "0";
             }
-            else if(tmp.get_signal() == "update")
+            else if(m_singleton.get_signal() == "update")
             {
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
                 this.Create.Content = "Update";
                 this.title.Text = current.Title;
                 this.detail.Text = current.Detail;
-                if (current.Picture == null)
-                    current.Picture = default_image;
-                this.pic.Source = current.Picture;
-                if (current.pic_file != null)
-                    pic.DataContext = "select_picture";
+                this.pic.DataContext = current.picture_id;
+                string image = "picture" + this.pic.DataContext.ToString() + ".jpg";
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                StorageFile logoImage = await assetsFolder.GetFileAsync(image);
+
+                IRandomAccessStream ir = await logoImage.OpenAsync(FileAccessMode.Read);
+                BitmapImage bi = new BitmapImage();
+                await bi.SetSourceAsync(ir);
+                pic.Source = bi;
+
                 this.datepick.Date = DateTimeOffset.Parse(current.Date);
                 this.delete.Opacity = 1;
                 this.share.Opacity = 1;
@@ -159,15 +161,20 @@ namespace myList
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
-                // Application now has read/write access to the picked file
+                // Application now has read/write access to the picked file                       图片加载
                 IRandomAccessStream ir = await file.OpenAsync(FileAccessMode.Read);
                 BitmapImage bi = new BitmapImage();
                 await bi.SetSourceAsync(ir);
                 pic.Source = bi;
                 StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
                 StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
-                StorageFile copiedFile = await file.CopyAsync(assetsFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
-                pic.DataContext = "selected_picture";
+                string picture_name;
+                if (m_singleton.get_signal() != "update")
+                    picture_name = "picture" + m_singleton.get_picture_count() + ".jpg";
+                else
+                    picture_name = "picture" + this.pic.DataContext.ToString() + ".jpg";
+                StorageFile copiedFile = await file.CopyAsync(assetsFolder, picture_name, NameCollisionOption.ReplaceExisting);
+                pic.DataContext = m_singleton.get_picture_count();
             }
         }
 
@@ -207,12 +214,17 @@ namespace myList
             ShowMessageDialog(result);
             if (result == "" && this.Create.Content.ToString() == "Create")
             {
+                if (current == null)
+                    current = new Todo();
                 current.Title = this.title.Text;
                 current.Detail = this.detail.Text;
                 current.Date = this.datepick.Date.ToString();
                 current.Picture = this.pic.Source;
+                current.picture_id = this.pic.DataContext.ToString();
                 reset_RightPart();
                 tmp.set_signal("add");
+                if (pic.DataContext.ToString() != "0")
+                    m_singleton.add_picture_count();
                 Frame frame = Window.Current.Content as Frame;
                 frame.Navigate(typeof(MainPage), "");
                 Window.Current.Content = frame;
@@ -294,10 +306,7 @@ namespace myList
                 StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
                 StorageFile attachmentFile;
                 var composite = ApplicationData.Current.LocalSettings.Values["newpage"] as ApplicationDataCompositeValue;
-                if (current.pic_file == null && this.pic.DataContext.ToString() != "select_picture")
-                    attachmentFile = await assetsFolder.GetFileAsync("bird.jpg");
-                else
-                    attachmentFile = await assetsFolder.GetFileAsync("tmp.jpg");
+                attachmentFile = await assetsFolder.GetFileAsync("picture"+pic.DataContext+".jpg");
                 if (attachmentFile != null)
                 {
                     var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);

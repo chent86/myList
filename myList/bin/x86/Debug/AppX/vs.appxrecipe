@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>401647175F4B5A3FE232DF0DF54D1310680B12A36B461D138E7838A5B1AC6F43</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>91684EF05DB4E302419745CAA6BBA75DC24C7AFB9B84A08F1479199C61A7F39F</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>86674a98-5494-4b10-b2c7-32cf77b85c9b_1.0.0.0_x86__9sdw6ty2x539e</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>86674a98-5494-4b10-b2c7-32cf77b85c9b_9sdw6ty2x539e!App</RegisteredUserModeAppID>
     <RegisteredPackageID>86674a98-5494-4b10-b2c7-32cf77b85c9b</RegisteredPackageID>
@@ -31,13 +31,13 @@
     <AppXManifest Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-04-10T11:19:11.929</Modified>
+      <Modified>2018-04-11T14:02:20.470</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\myList.exe">
       <PackagePath>entrypoint\myList.exe</PackagePath>
-      <Modified>2018-04-10T11:19:11.347</Modified>
+      <Modified>2018-04-11T14:02:19.994</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\NuGetPackages\microsoft.csharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -198,6 +198,10 @@
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\NuGetPackages\runtime.win7.system.private.uri\4.0.2\runtimes\win\lib\netcore50\System.Private.Uri.dll">
       <PackagePath>System.Private.Uri.dll</PackagePath>
       <Modified>2016-07-01T06:48:12.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\.nuget\packages\sqlitepcl\3.8.7.2\lib\netcore451\SQLitePCL.dll">
+      <PackagePath>SQLitePCL.dll</PackagePath>
+      <Modified>2014-12-09T03:04:52.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\NuGetPackages\system.appcontext\4.1.0\lib\netcore50\System.AppContext.dll">
       <PackagePath>System.AppContext.dll</PackagePath>
@@ -495,21 +499,13 @@
       <PackagePath>System.Xml.XmlSerializer.dll</PackagePath>
       <Modified>2016-06-11T14:15:04.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\bird.jpg">
-      <PackagePath>Assets\bird.jpg</PackagePath>
-      <Modified>2018-03-29T08:57:41.149</Modified>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UAP\v0.8.0.0\ExtensionSDKs\SQLite.UWP.2015\3.23.1\Redist\Debug\x86\sqlite3.dll">
+      <PackagePath>sqlite3.dll</PackagePath>
+      <Modified>2018-04-11T12:04:34.542</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\test.jpg">
-      <PackagePath>Assets\test.jpg</PackagePath>
-      <Modified>2018-03-31T16:06:54.742</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\test1.jpg">
-      <PackagePath>Assets\test1.jpg</PackagePath>
-      <Modified>2018-03-31T16:08:30.553</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\wood.jpg">
-      <PackagePath>Assets\wood.jpg</PackagePath>
-      <Modified>2018-03-29T08:57:41.151</Modified>
+    <AppxPackagedFile Include="C:\Users\lenovo\.nuget\packages\sqlitepcl\3.8.7.2\build\netcore451\SQLitePCL.Ext.dll">
+      <PackagePath>SQLitePCL.Ext.dll</PackagePath>
+      <Modified>2014-12-09T03:04:52.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\LargeTile.scale-100.png">
       <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
@@ -740,6 +736,22 @@
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-04-10T08:28:13.072</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\picture0.jpg">
+      <PackagePath>Assets\picture0.jpg</PackagePath>
+      <Modified>2018-03-29T08:57:41.149</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\test.jpg">
+      <PackagePath>Assets\test.jpg</PackagePath>
+      <Modified>2018-03-31T16:06:54.742</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\test1.jpg">
+      <PackagePath>Assets\test1.jpg</PackagePath>
+      <Modified>2018-03-31T16:08:30.553</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Assets\wood.jpg">
+      <PackagePath>Assets\wood.jpg</PackagePath>
+      <Modified>2018-03-29T08:57:41.151</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2018-03-29T08:57:41.159</Modified>
@@ -755,11 +767,11 @@
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-04-10T10:33:54.645</Modified>
+      <Modified>2018-04-11T12:54:55.445</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\Core\myList.exe">
       <PackagePath>myList.exe</PackagePath>
-      <Modified>2018-04-10T11:19:11.917</Modified>
+      <Modified>2018-04-11T14:02:20.464</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

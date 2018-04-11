@@ -11,7 +11,10 @@ namespace myList
     {
         private static readonly Singleton instance = new Singleton();
 
-        private Singleton() { }
+        private Singleton()
+        {
+            picture_count = 1;
+        }
 
         public static Singleton Instance
         {
@@ -19,6 +22,18 @@ namespace myList
             {
                 return instance;
             }
+        }
+
+        private int picture_count;
+
+        public string get_picture_count()
+        {
+            return picture_count.ToString();
+        }
+
+        public void add_picture_count()
+        {
+            picture_count++;
         }
 
         private Todo m_todo;
