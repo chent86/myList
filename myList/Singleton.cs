@@ -11,9 +11,15 @@ namespace myList
     {
         private static readonly Singleton instance = new Singleton();
 
+        private Database m_db;
+
+        public TodoManager ViewModel { get; set; }
+
         private Singleton()
         {
             picture_count = 1;
+            m_db = Database.Instance;
+            ViewModel = new TodoManager();
         }
 
         public static Singleton Instance
@@ -26,6 +32,11 @@ namespace myList
 
         private int picture_count;
 
+        public void set_picture_count(int count)
+        {
+            picture_count = count;
+        }
+
         public string get_picture_count()
         {
             return picture_count.ToString();
@@ -34,6 +45,7 @@ namespace myList
         public void add_picture_count()
         {
             picture_count++;
+            m_db.set_picture_count(picture_count.ToString());
         }
 
         private Todo m_todo;

@@ -24,6 +24,9 @@ namespace myList
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         public string picture_id;
+        public string create_date;
+        private Database m_db;
+        private int just_create;
 
         public Todo()
         {
@@ -32,9 +35,12 @@ namespace myList
             string path = "ms-appx:///Assets/picture0.jpg";
             this.Picture = new BitmapImage(new Uri(path));
             this.picture_id = "0";
-            this.date = "2018/5/21 0:10:30 +08:00";
+            this.date = "2020/5/21 0:10:30 +08:00";
+            this.create_date = DateTime.Now.ToString();
             visi = Windows.UI.Xaml.Visibility.Collapsed;
             Is_check = false;
+            m_db = Database.Instance;
+            just_create = 1;
         }
 
         public string Title
@@ -100,9 +106,18 @@ namespace myList
             {
                 this.is_check = value;
                 if (is_check == true)
+                {
                     Visi = Windows.UI.Xaml.Visibility.Visible;
+                    m_db.update_line("check", this.create_date);
+                }
                 else
+                {
                     Visi = Windows.UI.Xaml.Visibility.Collapsed;
+                    if (just_create != 0)
+                        m_db.update_line("notcheck", this.create_date);
+                    else
+                        just_create = 1;
+                }
                 this.OnPropertyChanged();
             }
         }
@@ -115,12 +130,15 @@ namespace myList
         public ObservableCollection<Todo> DefaultTodo { get { return this.defaultTodo; } }
         public TodoManager()
         {
-            int i;
-            for (i = 0; i < 3; i++)
+            TileService.SetBadgeCountOnTile(0);
+            int count = 0;
+            Database m_db = Database.Instance;
+            List<Todo> todo_list = m_db.reload();
+            foreach (Todo i in todo_list)
             {
-                this.defaultTodo.Add(new Todo()
-                {
-                });
+                this.DefaultTodo.Add(i);
+                count++;
+                TileService.SetBadgeCountOnTile(count);
             }
         }
     }

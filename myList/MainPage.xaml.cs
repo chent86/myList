@@ -34,17 +34,19 @@ namespace myList
         public Todo current;
         private BitmapImage default_image;
         private Singleton m_singleton;
+        private Database m_db;
         int _count;
         public MainPage()
         {
             this.InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Enabled;    //缓存页面
-            this.ViewModel = new TodoManager();
             default_image = new BitmapImage(new Uri("ms-appx:///Assets/picture0.jpg"));
             ImageBrush imageBrush = new ImageBrush();
             imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/wood.jpg", UriKind.Absolute));   //设置背景图片
             this.main.Background = this.bar.Background = imageBrush;
             m_singleton = Singleton.Instance;
+            this.ViewModel = m_singleton.ViewModel;
+            m_db = Database.Instance;
             pic.DataContext = "0";   //默认图片
             this.SizeChanged += (s, e) =>
             {
@@ -57,8 +59,13 @@ namespace myList
                     this.todo_list.Width = 500;
                 }
             };
-            Database db = Database.Instance;
-            this.title.Text = db.command();
+            int i = m_db.get_picture_count();
+            if (i == -1)
+            {
+                m_db.init_count();
+            }
+            else
+                m_singleton.set_picture_count(i);
         }
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -68,6 +75,7 @@ namespace myList
             {
                 m_singleton.set_todo(current);
                 m_singleton.set_signal("update");
+                save_to_tmp("picture" + current.picture_id + ".jpg");
                 Frame frame = Window.Current.Content as Frame;    //点击计划
                 frame.Navigate(typeof(NewPage), "");
                 Window.Current.Content = frame;
@@ -83,6 +91,7 @@ namespace myList
                 this.create.Content = "Update";
                 this.delete.Opacity = 1;
                 this.share.Opacity = 1;
+                save_to_tmp("picture" + current.picture_id + ".jpg");
             }
 
         }
@@ -96,30 +105,23 @@ namespace myList
                 composite["title"] = title.Text;
                 composite["detail"] = detail.Text;
                 composite["date"] = datepick.Date;
-                composite["picture"] = this.pic.DataContext;    //保存的是放置的那个图片的picture id
                 if(current != null)
                 {
-                    composite["current"] = "true";
+                    composite["current"] = "true";    //用于判断是否处于update状态
+                    composite["create_date"] = current.create_date;
                 }
                 else
                     composite["current"] = "false";
-                string result = "";
-                int i = 0;
-                for (i = 0; i < this.ViewModel.DefaultTodo.Count(); i++)
-                    if (this.ViewModel.DefaultTodo.ElementAt(i).Is_check == true)
-                        result += "1";
-                    else
-                        result += "0";
-                composite["check"] = result;
                 ApplicationData.Current.LocalSettings.Values["mainpage"] = composite;
             }
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if(e.NavigationMode == NavigationMode.New)
             {
                 ApplicationData.Current.LocalSettings.Values.Remove("mainpage");
+                reset_RightPart();
             }
             else if (ApplicationData.Current.LocalSettings.Values.ContainsKey("mainpage"))
             {
@@ -127,40 +129,33 @@ namespace myList
                 title.Text = (string)composite["title"];
                 detail.Text = (string)composite["detail"];
                 datepick.Date = (DateTimeOffset)composite["date"];
-                this.pic.DataContext = (string)composite["picture"];
-                if((string)composite["current"] == "true")
+                if ((string)composite["current"] == "true")
                 {
                     this.share.Opacity = 1;
                     this.delete.Opacity = 1;
                     this.create.Content = "Update";
+                    foreach (var item in this.ViewModel.DefaultTodo)
+                    {
+                        if(item.create_date == (string)composite["create_date"])
+                        {
+                            current = item;
+                            break;
+                        }
+                    }
+                    this.pic.DataContext = current.picture_id;
                 }
-                string result = (string)composite["check"];
-                int i = 0;
-                for (i = 0; i < 3; i++)
-                    if (result[i] == '0')
-                        this.ViewModel.DefaultTodo.ElementAt(i).Is_check = false;
-                    else
-                        this.ViewModel.DefaultTodo.ElementAt(i).Is_check = true;
-
-                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                string image = @"Assets\picture"+this.pic.DataContext+".jpg";
-                StorageFile logoImage = await appInstalledFolder.GetFileAsync(image);
-
-                IRandomAccessStream ir = await logoImage.OpenAsync(FileAccessMode.Read);
-                BitmapImage bi = new BitmapImage();
-                await bi.SetSourceAsync(ir);
-                pic.Source = bi;
-
+                get_cache_image();
                 ApplicationData.Current.LocalSettings.Values.Remove("mainpage");
-
+                
             }
 
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-
+            //current = m_singleton.get_todo();
             base.OnNavigatedTo(e);            
             if (m_singleton.get_signal() == "add")
             {
                 this.ViewModel.DefaultTodo.Add(current);
+                m_db.insert(current);
                 add_count();  //添加磁贴上的个数
                 this.pic.DataContext = current.picture_id;
                 create_tile(current);
@@ -169,13 +164,27 @@ namespace myList
             else if(m_singleton.get_signal() == "modify_or_simple")
             {
                 update_tile();
+
             }
             else if(m_singleton.get_signal() == "delete")
             {
-                this.ViewModel.DefaultTodo.Remove(current);
+                m_db.delete(m_singleton.get_todo().create_date);
+                this.ViewModel.DefaultTodo.Remove(m_singleton.get_todo());
                 update_tile();
                 sub_count();
             }
+        }
+
+        private async void get_cache_image()
+        {
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            string image = @"Assets\tmp.jpg";
+            StorageFile logoImage = await appInstalledFolder.GetFileAsync(image);
+
+            IRandomAccessStream ir = await logoImage.OpenAsync(FileAccessMode.Read);
+            BitmapImage bi = new BitmapImage();
+            await bi.SetSourceAsync(ir);
+            pic.Source = bi;
         }
 
         private void reset_RightPart()
@@ -184,7 +193,8 @@ namespace myList
             pic.Source = default_image;
             datepick.Date = DateTime.Now;
             this.pic.DataContext = "0";
-            current = null;
+            this.share.Opacity = 0;
+            save_to_tmp("picture0.jpg");
         }
 
         private void Create_Button(object sender, RoutedEventArgs e)
@@ -200,15 +210,17 @@ namespace myList
             ShowMessageDialog(result);
             if (result == "" && this.create.Content.ToString() == "Create")              //主页面添加项
             {
+                pic.DataContext = m_singleton.get_picture_count();
                 Todo newTodo = new Todo
                 {
-                    Title = title.Text, Detail = detail.Text, Date = datepick.Date.ToString(), Picture = pic.Source, picture_id = m_singleton.get_picture_count()
+                    Title = title.Text, Detail = detail.Text, Date = datepick.Date.ToString(), Picture = pic.Source, picture_id = this.pic.DataContext.ToString()
                 };
                 ViewModel.DefaultTodo.Add(newTodo);
+                tmp_to_save("picture" + newTodo.picture_id + ".jpg");
                 add_count();
                 create_tile(newTodo);
-                if(pic.DataContext.ToString() != "0")
-                    m_singleton.add_picture_count();
+                m_db.insert(newTodo);
+                m_singleton.add_picture_count();
                 reset_RightPart();
 
             }
@@ -220,7 +232,8 @@ namespace myList
                 current.Detail = detail.Text;
                 current.Date = datepick.Date.ToString();
                 current.Picture = pic.Source;
-
+                tmp_to_save("picture" + current.picture_id + ".jpg");   //保存失败，要在main里写图
+                m_db.update(current);
                 reset_RightPart();
 
                 this.create.Content = "Create";
@@ -275,13 +288,7 @@ namespace myList
                 pic.Source = bi;
                 StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
                 StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
-                string picture_name;
-                if (this.create.Content.ToString() == "Update")
-                    picture_name = "picture" + this.pic.DataContext + ".jpg";
-                else
-                    picture_name = "picture" + m_singleton.get_picture_count() + ".jpg";
-                StorageFile copiedFile = await file.CopyAsync(assetsFolder, picture_name, NameCollisionOption.ReplaceExisting);
-                pic.DataContext = m_singleton.get_picture_count();
+                StorageFile copiedFile = await file.CopyAsync(assetsFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
             }
         }
 
@@ -294,6 +301,7 @@ namespace myList
         {
             if(this.delete.Opacity == 1)
             {
+                m_db.delete(current.create_date);
                 this.ViewModel.DefaultTodo.Remove(current);
                 sub_count();
                 reset_RightPart();
@@ -308,9 +316,8 @@ namespace myList
             if (Window.Current.Bounds.Width < 1200)
             {
                 current = new Todo{};                                          
-                Singleton tmp = Singleton.Instance;
-                tmp.set_todo(current);
-                tmp.set_signal("simple");
+                m_singleton.set_todo(current);
+                m_singleton.set_signal("simple");
                 
                 Frame frame = Window.Current.Content as Frame;                   //页面跳转
                 frame.Navigate(typeof(NewPage), "");
@@ -395,6 +402,34 @@ namespace myList
                     emailMessage.Attachments.Add(attachment);
                 }
                 await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
+            }
+        }
+
+        private async void tmp_to_save(string save_name)
+        {
+            StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+            StorageFile attachmentFile;
+            attachmentFile = await assetsFolder.GetFileAsync("tmp.jpg");
+            if (attachmentFile != null)
+            {
+                StorageFile copiedFile = await attachmentFile.CopyAsync(assetsFolder, save_name, NameCollisionOption.ReplaceExisting);
+            }
+        }
+
+        private async void save_to_tmp(string save_name)
+        {
+            StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+            StorageFile attachmentFile;
+            attachmentFile = await assetsFolder.GetFileAsync(save_name);
+            if (attachmentFile != null)
+            {
+                StorageFile copiedFile = await attachmentFile.CopyAsync(assetsFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
             }
         }
     }

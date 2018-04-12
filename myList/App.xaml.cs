@@ -35,7 +35,6 @@ namespace myList
             this.Suspending += OnSuspending;
             TileUpdateManager.CreateTileUpdaterForApplication().Clear();
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
-            TileService.SetBadgeCountOnTile(0);
         }
 
         /// <summary>

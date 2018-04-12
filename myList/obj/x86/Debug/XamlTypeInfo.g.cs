@@ -225,6 +225,7 @@ namespace myList.myList_XamlTypeInfo
             case 5:   //  myList.NewPage
                 userType = new global::myList.myList_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_5_NewPage;
+                userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -243,6 +244,16 @@ namespace myList.myList_XamlTypeInfo
             var that = (global::myList.MainPage)instance;
             that.ViewModel = (global::myList.TodoManager)Value;
         }
+        private object get_1_NewPage_ViewModel(object instance)
+        {
+            var that = (global::myList.NewPage)instance;
+            return that.ViewModel;
+        }
+        private void set_1_NewPage_ViewModel(object instance, object Value)
+        {
+            var that = (global::myList.NewPage)instance;
+            that.ViewModel = (global::myList.TodoManager)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
@@ -256,6 +267,12 @@ namespace myList.myList_XamlTypeInfo
                 xamlMember = new global::myList.myList_XamlTypeInfo.XamlMember(this, "ViewModel", "myList.TodoManager");
                 xamlMember.Getter = get_0_MainPage_ViewModel;
                 xamlMember.Setter = set_0_MainPage_ViewModel;
+                break;
+            case "myList.NewPage.ViewModel":
+                userType = (global::myList.myList_XamlTypeInfo.XamlUserType)GetXamlTypeByName("myList.NewPage");
+                xamlMember = new global::myList.myList_XamlTypeInfo.XamlMember(this, "ViewModel", "myList.TodoManager");
+                xamlMember.Getter = get_1_NewPage_ViewModel;
+                xamlMember.Setter = set_1_NewPage_ViewModel;
                 break;
             }
             return xamlMember;
