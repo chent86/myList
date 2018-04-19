@@ -17,29 +17,29 @@
         </TransitionCollection>
     </Page.Transitions>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="main">
-        <ScrollViewer Width="600" Height="800" BorderBrush="Black" BorderThickness="1">
-            <StackPanel Orientation="Vertical" Name="test" HorizontalAlignment="Center" Width="600">
-                <Image Name="pic" Source="ms-appx:/Assets/picture0.jpg" Width="300" Margin="0,50,0,-1" HorizontalAlignment="Center" DataContext="default"></Image>
-                <Slider Name="sli" Width="300" Margin="0,10,0,0" HorizontalAlignment="Center" ValueChanged="sli_ValueChanged"></Slider>
-                <AppBarButton Icon="Pictures" Label="Select" Width="60" Height="60" HorizontalAlignment="Right" FontSize="20" Padding="0"  Margin="0,0,100,0" Click="select_Button"></AppBarButton>
-                <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left" Margin="75,0,0,-4"></TextBlock>
-                <TextBox x:Name="title" Width="450" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" Canvas.Left="100" Canvas.Top="300" Canvas.ZIndex="1" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
-                <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Margin="75,0,0,0"/>
-                <TextBox x:Name="detail" Width="450" Height="300" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Center"/>
-                <TextBlock Width="150" Height="50" Text="Due Date" FontSize="36"  HorizontalAlignment="Left" Margin="75,0,-1,0"/>
-                <DatePicker x:Name="datepick" Width="450" Height="35" HorizontalAlignment="Center"></DatePicker>
-                <StackPanel Orientation="Horizontal" BorderBrush="White" Width="450" Margin="0,20,0,1" HorizontalAlignment="Center">
-                    <Button Content="Create" Name="Create" Width="100" Height="50" HorizontalAlignment="Left" FontSize="24" Click="Create_Click"/>
-                    <Button Content="Cancel" Name="Cancel" Width="100" Height="50" HorizontalAlignment="Right" FontSize="24" VerticalAlignment="Center" Margin="250,0,0,0" Click="Cancel_Click" />
+        <ScrollViewer Name="create_part" Width="600" Height="800" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top" Margin="0,100,0,0">
+            <StackPanel Orientation="Vertical" Name="test" HorizontalAlignment="Center">
+                <Image Name="pic" Source="ms-appx:/Assets/picture0.jpg" Width="200" Margin="0,50,0,-1" HorizontalAlignment="Center" DataContext="default"></Image>
+                <StackPanel Orientation="Horizontal" Width="250">
+                    <Slider Name="sli" Width="200" Margin="0,10,0,0" HorizontalAlignment="Center" ValueChanged="sli_ValueChanged"></Slider>
+                    <AppBarButton Icon="Pictures" Foreground="{Binding Path=Foreground, ElementName=set_color}" Label="Select" Width="60" Height="60" HorizontalAlignment="Right" FontSize="20" Padding="0"  Margin="0,0,100,0" Click="select_Button"></AppBarButton>
+                </StackPanel>
+                <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left" Foreground="{Binding Path=Foreground, ElementName=set_color}"></TextBlock>
+                <TextBox x:Name="title" Width="350" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" Canvas.Left="100" Canvas.Top="300" Canvas.ZIndex="1" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+                <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Foreground="{Binding Path=Foreground, ElementName=set_color}"/>
+                <TextBox x:Name="detail" Width="350" Height="150" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Center"/>
+                <TextBlock Width="150" Height="50" Text="Due Date" FontSize="36"  HorizontalAlignment="Left" Foreground="{Binding Path=Foreground, ElementName=set_color}"/>
+                <DatePicker x:Name="datepick" Width="350" Height="35" HorizontalAlignment="Center"></DatePicker>
+                <StackPanel Orientation="Horizontal" BorderBrush="White" Width="350" Margin="0,20,0,1" HorizontalAlignment="Center">
+                    <Button Content="Create" Name="Create" Width="100" Height="50" HorizontalAlignment="Left" FontSize="24" Click="Create_Click" Foreground="{Binding Path=Foreground, ElementName=set_color}"/>
+                    <Button Content="Cancel" Name="Cancel" Width="100" Height="50" HorizontalAlignment="Right" FontSize="24" VerticalAlignment="Center" Margin="150,0,0,0" Click="Cancel_Click" Foreground="{Binding Path=Foreground, ElementName=set_color}"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
         <CommandBar VerticalAlignment="Bottom" Name="bar">
-            <AppBarButton Icon="Mail" x:Name="share" Click="share_Click" Opacity="0"></AppBarButton>
+            <AppBarButton Icon="Share" x:Name="share" Click="share_Click" Opacity="0"></AppBarButton>
             <AppBarButton Icon="Delete" x:Name="delete" Click="delete_Click"></AppBarButton>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Upload Background" Name="change_background" Click="change_background_Click" />
-            </CommandBar.SecondaryCommands>
         </CommandBar>
+        <TextBlock Name="set_color" Width="0" Foreground="White"></TextBlock>
     </Grid>
 </Page>

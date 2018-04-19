@@ -33,8 +33,29 @@ namespace myList
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
+            init();
+        }
+
+        public async void init()
+        {
+            bool exist = false;
+            try
+            {
+                StorageFile storagefile = await ApplicationData.Current.LocalFolder.GetFileAsync("mylist.db");
+                exist = true;
+            }
+            catch
+            {
+                exist = false;
+            }
+            if (!exist)
+            {
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                StorageFile databasefile = await assetsFolder.GetFileAsync("mylist.db");  //初始化一个数据库，方便ta检查
+                await databasefile.CopyAsync(ApplicationData.Current.LocalFolder, "mylist.db", NameCollisionOption.ReplaceExisting);
+            }
         }
 
         /// <summary>

@@ -3,31 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Xaml.Media;
 
 namespace myList
 {
     class Singleton
     {
-        private static readonly Singleton instance = new Singleton();
+        //private static readonly Singleton instance = new Singleton();
+
+        private static Singleton instance;
 
         private Database m_db;
 
         public TodoManager ViewModel { get; set; }
+
+        private SolidColorBrush font_color;
 
         private Singleton()
         {
             picture_count = 1;
             m_db = Database.Instance;
             ViewModel = new TodoManager();
+            font_color = new SolidColorBrush(Colors.Black);
         }
 
         public static Singleton Instance
         {
             get
             {
+                if (instance == null)
+                    instance = new Singleton();
                 return instance;
             }
+        }
+
+        public SolidColorBrush get_color()
+        {
+            return font_color;
+        }
+
+        public void set_color(SolidColorBrush sc)
+        {
+            font_color = sc;
         }
 
         private int picture_count;

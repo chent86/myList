@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -128,18 +129,27 @@ namespace myList
     {
         private ObservableCollection<Todo> defaultTodo = new ObservableCollection<Todo>();
         public ObservableCollection<Todo> DefaultTodo { get { return this.defaultTodo; } }
+        public int init_count;
         public TodoManager()
         {
-            TileService.SetBadgeCountOnTile(0);
-            int count = 0;
             Database m_db = Database.Instance;
             List<Todo> todo_list = m_db.reload();
+            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
             foreach (Todo i in todo_list)
             {
                 this.DefaultTodo.Add(i);
-                count++;
-                TileService.SetBadgeCountOnTile(count);
+                create_tile(i);
             }
+            TileService.SetBadgeCountOnTile(todo_list.Count);
+            init_count = todo_list.Count;
+        }
+        private void create_tile(Todo newtodo)
+        {
+            string pic_path = @"Assets/picture" + newtodo.picture_id + ".jpg";
+            var xmlDoc = TileService.CreateTiles(newtodo, pic_path);
+            var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+            TileNotification notification = new TileNotification(xmlDoc);
+            updater.Update(notification);
         }
     }
 }

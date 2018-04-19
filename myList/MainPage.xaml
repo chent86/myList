@@ -46,8 +46,8 @@
             <TextBlock Width="200" Text="MyLists" FontSize="36" FontStyle="Normal"
                             Height="48" Margin="0,100,3,0" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-            <ScrollViewer Name="list_scroll" Padding="0,20,0,0" BorderThickness="1" BorderBrush="Black" Height="600" Width="{Binding Path=Width, ElementName=todo_list}" HorizontalAlignment="Left" Margin="0,0,0,0">
-                <ListView ItemsSource="{x:Bind ViewModel.DefaultTodo}"  ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalAlignment="Top" ItemClick="ListView_ItemClick" IsItemClickEnabled="True">
+            <ScrollViewer Name="list_scroll" VerticalAlignment="Top"  Padding="0,20,0,0" BorderThickness="1" BorderBrush="Black" Height="600" Width="{Binding Path=Width, ElementName=todo_list}" HorizontalAlignment="Left" Margin="0,170,0,0">
+                <ListView ItemsSource="{x:Bind ViewModel.DefaultTodo}"  SelectionMode="None" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalAlignment="Top" ItemClick="ListView_ItemClick"  IsItemClickEnabled="True">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:Todo">
                             <Grid Height="100" Width="{Binding Path=Width, ElementName=todo_list}">
@@ -59,7 +59,7 @@
                                 </Grid.ColumnDefinitions>
                                 <CheckBox Grid.Column="0" VerticalAlignment="Center" Height="32" Width="32" IsChecked="{x:Bind Is_check, Mode=TwoWay}"/>
                                 <Image Grid.Column="1" Source="{x:Bind Picture, Mode=TwoWay}" Height="90" Width="90" Visibility="{Binding Path=Visibility, ElementName=Set_Visibility}"/>
-                                <TextBlock Grid.Column="2" Text="{x:Bind Title, Mode=TwoWay}" VerticalAlignment="Center" Foreground="Black" Margin="10,0,0,0"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind Title, Mode=TwoWay}" VerticalAlignment="Center" Foreground="{Binding Path=Foreground, ElementName=set_color}" Margin="10,0,0,0"/>
                                 <Line Grid.Column="2" Stretch="Fill" Stroke="Black" StrokeThickness="2" X1="1" VerticalAlignment="Center" Visibility="{x:Bind Visi, Mode=TwoWay}"/>
                             </Grid>
                         </DataTemplate>
@@ -67,36 +67,44 @@
                 </ListView>
             </ScrollViewer>
         </Grid>
-
-        <ScrollViewer  Name="create_part" Width="0" Margin="550,0,0,0" Height="800" BorderThickness="1" BorderBrush="Black" Opacity="0">
+        <StackPanel Orientation="Horizontal"  Name="search" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,0,0,0">
+            <TextBox Width="300" Height="50" Name="query_text"></TextBox>
+            <Button Width="100" Height="50" Content="Query" FontSize="24" FontWeight="Bold" Click="query_click" Foreground="{Binding Path=Foreground, ElementName=set_color}"></Button>
+        </StackPanel>
+        <ScrollViewer  Name="create_part" Width="0" Margin="550,100,0,-1" Height="700" BorderThickness="1" BorderBrush="Black" Opacity="0" VerticalAlignment="Top">
             <Grid  HorizontalAlignment="Stretch" Width="600">
                 <StackPanel Orientation="Vertical"  Name="test" HorizontalAlignment="Center">
-                    <Image Name="pic" Source="Assets/picture0.jpg" Width="300" Margin="0,50,0,0"/>
-                    <AppBarButton Icon="Pictures" Label="Select" Width="60" Height="60" HorizontalAlignment="Right" FontSize="20" Padding="0" Click="Select_picture"></AppBarButton>
-                    <Slider Name="sli" Width="300" Margin="0,10,0,0" ValueChanged="Slider_ValueChanged"></Slider>
-                    <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left"></TextBlock>
-                    <TextBox x:Name="title" Width="450" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" ></TextBox>
-                    <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Canvas.ZIndex="-1"/>
-                    <TextBox x:Name="detail" Width="450" Height="300" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
-                    <TextBlock Width="150" Height="50" Text="Due Date" FontSize="36"  HorizontalAlignment="Left" Margin="50,0,0,0"></TextBlock>
-                    <DatePicker x:Name="datepick" Width="450" Height="35" HorizontalAlignment="Center" ></DatePicker>
-                    <StackPanel Orientation="Horizontal" BorderBrush="White" Width="450">
-                        <Button x:Name="create" Content="Create" Width="100" Height="50" HorizontalAlignment="Left" FontSize="24"  Click="Create_Button"/>
-                        <Button Content="Cancel" Width="100" Height="50" HorizontalAlignment="Right" FontSize="24" VerticalAlignment="Center" Margin="250,0,0,0" Click="Cancel_Button"/>
+                    <Image Name="pic" Source="Assets/picture0.jpg" Width="200" Margin="0,25,0,0"/>
+                    <StackPanel Orientation="Horizontal" Width="250" Height="55">
+                        <Slider Name="sli" Width="200" ValueChanged="Slider_ValueChanged"></Slider>
+                        <AppBarButton Icon="Pictures" Label="Select" Width="60" Height="60" HorizontalAlignment="Right" Click="Select_picture" Foreground="{Binding Path=Foreground, ElementName=set_color}"></AppBarButton>
+                    </StackPanel>
+                    <TextBlock Width="100" Height="50" Text="title" FontSize="36"  HorizontalAlignment="Left" Foreground="{Binding Path=Foreground, ElementName=set_color}"></TextBlock>
+                    <TextBox x:Name="title" Width="350" Height="50" HorizontalAlignment="Center" VerticalAlignment="Stretch" ></TextBox>
+                    <TextBlock Width="100" Height="50" Text="detail" FontSize="36"  HorizontalAlignment="Left" Canvas.ZIndex="-1" Foreground="{Binding Path=Foreground, ElementName=set_color}"/>
+                    <TextBox x:Name="detail" Width="350" Height="150" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
+                    <TextBlock Width="150" Height="50" Text="Due Date" FontSize="36"  HorizontalAlignment="Left" Foreground="{Binding Path=Foreground, ElementName=set_color}"></TextBlock>
+                    <DatePicker x:Name="datepick" Width="350" Height="35" HorizontalAlignment="Center" ></DatePicker>
+                    <StackPanel Orientation="Horizontal" BorderBrush="White" Width="350">
+                        <Button x:Name="create" Content="Create" Width="100" Height="50" HorizontalAlignment="Left" FontSize="24"  Click="Create_Button" Foreground="{Binding Path=Foreground, ElementName=set_color}"/>
+                        <Button Content="Cancel" Width="100" Height="50" HorizontalAlignment="Right" FontSize="24" VerticalAlignment="Center" Margin="150,0,0,0" Click="Cancel_Button" Foreground="{Binding Path=Foreground, ElementName=set_color}"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
         <!--</ScrollViewer>-->
         <CommandBar VerticalAlignment="Bottom" Name="bar">
-            <AppBarButton Icon="Mail" x:Name="share" Click="share_Click" Opacity="0"></AppBarButton>
+            <AppBarButton Icon="Share" x:Name="share" Click="share_Click" Opacity="0"></AppBarButton>
             <AppBarButton Icon="Delete" x:Name="delete" Click="delete_Click" Opacity="0"></AppBarButton>
             <AppBarButton Icon="Add" x:Name="go" Click="go_Click"></AppBarButton>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Upload Background" Name="change_background" Click="change_background_Click" />
+                <AppBarButton Label="Dark Theme" Name="dark" Click="dark_Click" />
+                <AppBarButton Label="Light Theme" Name="light" Click="light_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
         <Image x:Name="Set_Visibility" Visibility="Collapsed"/>
+        <TextBlock Name="set_color" Width="0" Foreground="White"></TextBlock>
     </Grid>
     <!--</ScrollViewer>-->
 </Page>

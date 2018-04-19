@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots >
   <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="Foreground" />
     <RootPropertyPathName Name="Width" />
     <RootPropertyPathName Name="Visibility" />
   </Roots.PropertyPathNames>
@@ -48,6 +49,17 @@
       <RootProperty Name="Target" />
       <RootProperty Name="Value" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="BorderBrush" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
       <RootProperty Name="Name" />
       <RootProperty Name="Width" />
@@ -56,6 +68,7 @@
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="Opacity" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Content" />
       <RootProperty Name="Padding" />
       <RootProperty Name="HorizontalAlignment" />
@@ -78,6 +91,19 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="DataContext" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="FontStyle" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="FontWeight" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.AppBarButton">
       <RootProperty Name="Icon" />
       <RootProperty Name="Opacity" />
@@ -86,38 +112,11 @@
       <RootProperty Name="Width" />
       <RootProperty Name="Height" />
       <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Foreground" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Padding" />
       <RootProperty Name="Margin" />
       <RootEvent Name="Click" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Orientation" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Children" />
-      <RootProperty Name="BorderBrush" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Margin" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Slider">
-      <RootProperty Name="Name" />
-      <RootProperty Name="Width" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootEvent Name="ValueChanged" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
-      <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="Text" />
-      <RootProperty Name="FontSize" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="FontStyle" />
-      <RootProperty Name="FontWeight" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Foreground" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Width" />
@@ -126,6 +125,7 @@
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="TextWrapping" />
       <RootProperty Name="AcceptsReturn" />
+      <RootProperty Name="Name" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Canvas">
       <RootMethod Name="GetZIndex" />
@@ -146,8 +146,10 @@
       <RootProperty Name="Height" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="FontSize" />
+      <RootProperty Name="Foreground" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="FontWeight" />
       <RootProperty Name="Name" />
       <RootEvent Name="Click" />
     </RootType>
@@ -155,8 +157,16 @@
       <RootProperty Name="Path" />
       <RootProperty Name="ElementName" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Slider">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootEvent Name="ValueChanged" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="ItemsSource" />
+      <RootProperty Name="SelectionMode" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="IsItemClickEnabled" />

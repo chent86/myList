@@ -25,8 +25,9 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="myList.exe" EntryPoint="myList.App">
-      <uap:VisualElements DisplayName="myList" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="myList" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+      <uap:VisualElements DisplayName="myList" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="myList" BackgroundColor="black">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png">
+        </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
@@ -47,6 +48,7 @@
     <build:Item Name="UniversalGenericsOptOut" Value="false" />
     <build:Item Name="ShortcutGenericAnalysis" Value="false" />
     <build:Item Name="Microsoft.Windows.UI.Xaml.Build.Tasks.dll" Version="15.0.27421.1" />
+    <build:Item Name="SQLite.UWP.2015" Version="3.23.1" />
     <build:Item Name="MakePri.exe" Version="10.0.16299.15 (WinBuild.160101.0800)" />
   </build:Metadata>
 </Package>

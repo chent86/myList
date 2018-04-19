@@ -1,3 +1,5 @@
+C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\SQLitePCL.Ext.dll
+C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\SQLitePCL.Ext.pri
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\App.xbf
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\MainPage.xbf
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\NewPage.xbf
@@ -49,6 +51,7 @@ C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.Runtime.Extensions.dl
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\clrjit.dll
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\clrcompression.dll
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.Private.Uri.dll
+C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\SQLitePCL.dll
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.AppContext.dll
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.Buffers.dll
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.Collections.Concurrent.dll
@@ -123,6 +126,7 @@ C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.Xml.ReaderWriter.dll
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.Xml.XDocument.dll
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.Xml.XmlDocument.dll
 C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\System.Xml.XmlSerializer.dll
+C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\myList.csprojResolveAssemblyReference.cache
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\App.g.i.cs
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\App.g.cs
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\MainPage.g.i.cs
@@ -204,6 +208,8 @@ C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\FxResources.System.Xml.Reade
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\FxResources.System.Xml.XDocument.SR.resw
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\FxResources.System.Xml.XmlDocument.SR.resw
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\FxResources.System.Xml.XmlSerializer.SR.resw
+C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\SQLitePCL\en\SQLitePCL.Resources.resw
+C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\myList.csproj.GenerateResource.Cache
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\priconfig.xml
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\priconfig.xml.intermediate
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\layout.resfiles
@@ -216,14 +222,8 @@ C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\qualifiers.txt
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\qualifiers.txt.intermediate
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\resources.en-us.resfiles
-C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\resources.en-us.resfiles.intermediate
-C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\ProjectArchitectures.txt
-C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\myList.csprojResolveAssemblyReference.cache
-C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\SQLitePCL.Ext.dll
-C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\SQLitePCL.Ext.pri
-C:\Users\lenovo\Desktop\myList\myList\bin\x86\Debug\SQLitePCL.dll
-C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\SQLitePCL\en\SQLitePCL.Resources.resw
-C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\myList.csproj.GenerateResource.Cache
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\resources.en.resfiles
+C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\resources.en-us.resfiles.intermediate
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\resources.en.resfiles.intermediate
 C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\SQLitePCL.Ext.pri.xml
+C:\Users\lenovo\Desktop\myList\myList\obj\x86\Debug\ProjectArchitectures.txt

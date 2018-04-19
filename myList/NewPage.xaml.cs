@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -37,17 +39,36 @@ namespace myList
             this.InitializeComponent();
             m_singleton = Singleton.Instance;
             this.ViewModel = m_singleton.ViewModel;
-            NavigationCacheMode = NavigationCacheMode.Enabled;    //缓存页面
-            ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/wood.jpg", UriKind.Absolute));
+            NavigationCacheMode = NavigationCacheMode.Enabled;    //缓存页面           
             default_image = new BitmapImage(new Uri("ms-appx:///Assets/picture0.jpg"));
-            this.bar.Background = imageBrush;
-            this.main.Background = imageBrush;
             Frame rootFrame = Window.Current.Content as Frame;
             //rootFrame.Navigated += OnNavigated;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
             m_db = Database.Instance;
+            this.SizeChanged += (s, e) =>
+            {
+                this.create_part.Height = 800 + e.NewSize.Height - 970;
+            };
+            DataTransferManager.GetForCurrentView().DataRequested += OnShare;
+        }
+
+        public async void OnShare(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            var request = args.Request;
+            request.Data.Properties.Title = "仙草";
+            request.Data.Properties.Description = "数据共享功能";
+            request.Data.SetText("哈哈哈哈哈哈哈哈哈哈");
+            StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+            StorageFile attachmentFile = null;
+            attachmentFile = await assetsFolder.GetFileAsync("picture" + pic.DataContext + ".jpg");
+            if (attachmentFile != null)
+            {
+                request.Data.SetStorageItems(new List<StorageFile> { attachmentFile });
+            }
         }
 
         private void OnBackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
@@ -77,8 +98,15 @@ namespace myList
             }
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            string background = m_db.get_background();
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/" + background, UriKind.Absolute));   //设置背景图片
+            this.main.Background = imageBrush;
+            var color = (Color)this.Resources["SystemAccentColor"];  //跟随系统主题颜色
+            this.bar.Background = new SolidColorBrush(color);
+            this.set_color.Foreground = m_singleton.get_color();
             if (e.NavigationMode == NavigationMode.New)
             {
                 ApplicationData.Current.LocalSettings.Values.Remove("newpage");
@@ -127,13 +155,15 @@ namespace myList
                     this.pic.DataContext = current.picture_id;
                     m_singleton.set_signal("update");
                     m_singleton.set_todo(current);
+                    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
                 }
+                else
+                    SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
                 title.Text = (string)composite["title"];
                 detail.Text = (string)composite["detail"];
                 datepick.Date = (DateTimeOffset)composite["date"];
                 this.delete.Opacity = 1;
                 this.share.Opacity = 1;
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
                 this.Create.Content = "Update";
                 get_cache_image();
                 ApplicationData.Current.LocalSettings.Values.Remove("newpage");
@@ -189,6 +219,7 @@ namespace myList
                 this.detail.Text = current.Detail;
                 this.pic.Source = current.Picture;
                 this.datepick.Date = DateTimeOffset.Parse(current.Date);
+                save_to_tmp("picture" + current.picture_id + ".jpg");
             }
         }
 
@@ -264,52 +295,11 @@ namespace myList
             Window.Current.Activate();
         }
 
-        private async void change_background_Click(object sender, RoutedEventArgs e)
-        {
-            FileOpenPicker openPicker = new FileOpenPicker();
-            openPicker.ViewMode = PickerViewMode.Thumbnail;
-            openPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
-            openPicker.FileTypeFilter.Add(".jpg");
-            openPicker.FileTypeFilter.Add(".jpeg");
-            openPicker.FileTypeFilter.Add(".png");
-
-            StorageFile file = await openPicker.PickSingleFileAsync();
-            if (file != null)
-            {
-                // Application now has read/write access to the picked file                      更改背景图片
-                IRandomAccessStream ir = await file.OpenAsync(FileAccessMode.Read);
-                BitmapImage bi = new BitmapImage();
-                await bi.SetSourceAsync(ir);
-                ImageBrush imageBrush = new ImageBrush();
-                imageBrush.ImageSource = bi;
-                this.main.Background = imageBrush;
-                this.bar.Background = new SolidColorBrush(Windows.UI.Colors.Gray);
-            }
-        }
-
-        private async void share_Click(object sender, RoutedEventArgs e)
+        private void share_Click(object sender, RoutedEventArgs e)
         {
             if (this.share.Opacity == 1)
             {
-                var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
-                emailMessage.Subject = "仙草";
-                emailMessage.Body = "哈哈哈哈哈哈哈哈哈哈哈哈";
-                StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-
-                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
-                StorageFile attachmentFile;
-                var composite = ApplicationData.Current.LocalSettings.Values["newpage"] as ApplicationDataCompositeValue;
-                attachmentFile = await assetsFolder.GetFileAsync("picture"+pic.DataContext+".jpg");
-                if (attachmentFile != null)
-                {
-                    var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
-                    var attachment = new Windows.ApplicationModel.Email.EmailAttachment(
-                             attachmentFile.Name,
-                             stream);
-                    emailMessage.Attachments.Add(attachment);
-                }
-                await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
+                DataTransferManager.ShowShareUI();
             }
         }
 

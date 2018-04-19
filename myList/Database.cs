@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
@@ -32,18 +33,21 @@ namespace myList
 
         private static string sql_info_table = "INFO";
 
-        private static string sql_create_info_table = "CREATE TABLE IF NOT EXISTS " + sql_info_table + " (PICTURE_COUNT TEXT NOT NULL)";
+        private static string sql_create_info_table = "CREATE TABLE IF NOT EXISTS " + sql_info_table + " (PICTURE_COUNT TEXT NOT NULL, BACKGROUND TEXT NOT NULL)";
 
         private static string sql_select_info = "SELECT PICTURE_COUNT FROM " + sql_info_table;
 
         private static string sql_update_info = "UPDATE " + sql_info_table + " SET PICTURE_COUNT = ? ";
 
-        private string pic_count;
+        private static string sql_select_background = "SELECT BACKGROUND FROM " + sql_info_table;
+
+        private static string sql_update_background = "UPDATE " + sql_info_table + " SET BACKGROUND = ? ";
+
+        private static string sql_fuzzy_search = "SELECT TITLE, DETAIL, DATE FROM " + sql_table + " WHERE TITLE LIKE ? OR DETAIL LIKE ?";
 
         private Database()
         {
             conn = new SQLiteConnection("mylist.db");
-            pic_count = "0";
             using (var statement = conn.Prepare(sql_create_table))
             {
                 statement.Step();
@@ -115,9 +119,9 @@ namespace myList
             List<Todo> todo_list = new List<Todo>();
             using (var statement = conn.Prepare(sql_select))
             {
-                while(SQLiteResult.ROW == statement.Step())
+                while (SQLiteResult.ROW == statement.Step())
                 {
-                    Todo tmp = new Todo { create_date = (string)statement[0],  Title = (string)statement[1], Detail = (string)statement[2], Date = (string)statement[3], picture_id = (string)statement[4]};
+                    Todo tmp = new Todo { create_date = (string)statement[0], Title = (string)statement[1], Detail = (string)statement[2], Date = (string)statement[3], picture_id = (string)statement[4] };
                     if ((string)statement[5] == "check")
                         tmp.Is_check = true;
                     else
@@ -164,13 +168,53 @@ namespace myList
             }
         }
 
+        public string get_background()
+        {
+            string background = "wood.jpg";
+            using (var statement = conn.Prepare(sql_select_background))
+            {
+                if (SQLiteResult.ROW == statement.Step())
+                {
+                    background = (string)statement[0];
+                }
+            }
+            return background;
+        }
+
+        public void set_background(string background)
+        {
+            using (var statement = conn.Prepare(sql_update_background))
+            {
+                statement.Bind(1, background);
+                statement.Step();
+            }
+        }
+
         public void init_count()
         {
-            using (var new_statement = conn.Prepare("INSERT INTO " + sql_info_table + " VALUES(?);"))
+            using (var new_statement = conn.Prepare("INSERT INTO " + sql_info_table + " VALUES(?,?);"))
             {
                 new_statement.Bind(1, "1");
+                new_statement.Bind(2, "wood.jpg");
                 new_statement.Step();
             }
+        }
+
+        public List<Todo> fuzzy_search(string info)
+        {
+            List<Todo> todo_list = new List<Todo>();
+            string fuzzy = "%"+info+"%";
+            using (var statement = conn.Prepare(sql_fuzzy_search))
+            {
+                statement.Bind(1, fuzzy);
+                statement.Bind(2, fuzzy);
+                while (SQLiteResult.ROW == statement.Step())
+                {
+                    Todo tmp = new Todo {Title = (string)statement[0], Detail = (string)statement[1], Date = (string)statement[2]};
+                    todo_list.Add(tmp);
+                }
+            }
+            return todo_list;
         }
     }
 }

@@ -19,6 +19,10 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Notifications;
+using System.Text;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.ViewManagement;
+using Windows.UI;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -41,12 +45,10 @@ namespace myList
             this.InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Enabled;    //缓存页面
             default_image = new BitmapImage(new Uri("ms-appx:///Assets/picture0.jpg"));
-            ImageBrush imageBrush = new ImageBrush();
-            imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/wood.jpg", UriKind.Absolute));   //设置背景图片
-            this.main.Background = this.bar.Background = imageBrush;
             m_singleton = Singleton.Instance;
             this.ViewModel = m_singleton.ViewModel;
             m_db = Database.Instance;
+            init_item_count(); 
             pic.DataContext = "0";   //默认图片
             this.SizeChanged += (s, e) =>
             {
@@ -58,6 +60,9 @@ namespace myList
                 {
                     this.todo_list.Width = 500;
                 }
+
+                this.list_scroll.Height = 600 + e.NewSize.Height - 850;
+                this.create_part.Height = 700 + e.NewSize.Height - 850;
             };
             int i = m_db.get_picture_count();
             if (i == -1)
@@ -66,6 +71,31 @@ namespace myList
             }
             else
                 m_singleton.set_picture_count(i);
+            update_tile();
+            DataTransferManager.GetForCurrentView().DataRequested += OnShare;           
+        }
+
+        public async void OnShare(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            var request = args.Request;
+            request.Data.Properties.Title = "仙草";
+            request.Data.Properties.Description = "数据共享功能";
+            request.Data.SetText("哈哈哈哈哈哈哈哈哈哈");           
+            StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+            StorageFile attachmentFile = null;
+            attachmentFile = await assetsFolder.GetFileAsync("picture" + pic.DataContext + ".jpg");
+            if (attachmentFile != null)
+            {
+                request.Data.SetStorageItems(new List<StorageFile> { attachmentFile });
+            }
+        }
+
+        public void init_item_count()
+        {
+            _count = this.ViewModel.init_count;    //初始化磁贴的计数
         }
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -93,7 +123,6 @@ namespace myList
                 this.share.Opacity = 1;
                 save_to_tmp("picture" + current.picture_id + ".jpg");
             }
-
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -118,7 +147,14 @@ namespace myList
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(e.NavigationMode == NavigationMode.New)
+            string background = m_db.get_background();
+            ImageBrush imageBrush = new ImageBrush();
+            imageBrush.ImageSource = new BitmapImage(new Uri("ms-appx:///Assets/" + background, UriKind.Absolute));   //设置背景图片
+            this.main.Background = imageBrush;
+            var color = (Color)this.Resources["SystemAccentColor"];  //跟随系统主题颜色
+            this.bar.Background = new SolidColorBrush(color);
+            this.set_color.Foreground = m_singleton.get_color();
+            if (e.NavigationMode == NavigationMode.New)
             {
                 ApplicationData.Current.LocalSettings.Values.Remove("mainpage");
                 reset_RightPart();
@@ -142,7 +178,8 @@ namespace myList
                             break;
                         }
                     }
-                    this.pic.DataContext = current.picture_id;
+                    if(current != null)
+                        this.pic.DataContext = current.picture_id;
                 }
                 get_cache_image();
                 ApplicationData.Current.LocalSettings.Values.Remove("mainpage");
@@ -266,6 +303,7 @@ namespace myList
                 this.detail.Text = current.Detail;
                 this.pic.Source = current.Picture;
                 this.datepick.Date = DateTimeOffset.Parse(current.Date);       //主页面取消项
+                save_to_tmp("picture"+current.picture_id+".jpg");
             }
         }
 
@@ -294,7 +332,7 @@ namespace myList
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            this.pic.Width = sli.Value + 300;
+            this.pic.Width = sli.Value + 200;
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)
@@ -345,7 +383,13 @@ namespace myList
                 ImageBrush imageBrush = new ImageBrush();
                 imageBrush.ImageSource = bi;
                 this.main.Background = imageBrush;
-                this.bar.Background = new SolidColorBrush(Windows.UI.Colors.Gray);
+                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
+                string path = "picture" + m_singleton.get_picture_count() + ".jpg";
+                StorageFile copiedFile = await file.CopyAsync(assetsFolder, path, NameCollisionOption.ReplaceExisting);
+                m_db.set_background(path);
+                m_singleton.add_picture_count();
+
             }
         }
 
@@ -380,35 +424,16 @@ namespace myList
 
         }
 
-        private async void share_Click(object sender, RoutedEventArgs e)
+        private void share_Click(object sender, RoutedEventArgs e)
         {
             if(this.share.Opacity == 1)
             {
-                var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
-                emailMessage.Subject = "仙草";
-                emailMessage.Body = "哈哈哈哈哈哈哈哈哈哈哈哈";
-                StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-
-                StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
-                StorageFile attachmentFile;
-                    attachmentFile = await assetsFolder.GetFileAsync("picture"+pic.DataContext+".jpg");
-                if (attachmentFile != null)
-                {
-                    var stream = Windows.Storage.Streams.RandomAccessStreamReference.CreateFromFile(attachmentFile);
-                    var attachment = new Windows.ApplicationModel.Email.EmailAttachment(
-                             attachmentFile.Name,
-                             stream);
-                    emailMessage.Attachments.Add(attachment);
-                }
-                await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
+                DataTransferManager.ShowShareUI();
             }
         }
 
         private async void tmp_to_save(string save_name)
         {
-            StorageFolder MyFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-
             StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             StorageFolder assetsFolder = await appInstalledFolder.GetFolderAsync("Assets");
             StorageFile attachmentFile;
@@ -431,6 +456,52 @@ namespace myList
             {
                 StorageFile copiedFile = await attachmentFile.CopyAsync(assetsFolder, "tmp.jpg", NameCollisionOption.ReplaceExisting);
             }
+        }
+
+        private void query_click(object sender, RoutedEventArgs e)
+        {
+            string info = this.query_text.Text;
+            this.query_text.Text = "";
+            List<Todo> todo_list = m_db.fuzzy_search(info);
+            if (todo_list.Count == 0)
+                search_result("Not found!");
+            else if(info == "")
+            {
+                search_result("Please enter information for query!");
+            }
+              
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var item in todo_list)
+                {
+                    sb.AppendFormat("Title: {0}\nDetail:\n{1}\nDate: {2}", item.Title, item.Detail, item.Date);
+                    sb.AppendLine();
+                    sb.AppendLine();
+                }
+                search_result(sb.ToString());
+            }
+        }
+
+        private async void search_result(string result)
+        {
+            var msgDialog = new Windows.UI.Popups.MessageDialog("create");
+            if (result == "")
+                result = "success!";
+            msgDialog.Content = result;
+            await msgDialog.ShowAsync();
+        }
+
+        private void dark_Click(object sender, RoutedEventArgs e)
+        {
+            m_singleton.set_color(new SolidColorBrush(Colors.Black));
+            this.set_color.Foreground = m_singleton.get_color();
+        }
+
+        private void light_Click(object sender, RoutedEventArgs e)
+        {
+            m_singleton.set_color(new SolidColorBrush(Colors.White));
+            this.set_color.Foreground = m_singleton.get_color();
         }
     }
 }

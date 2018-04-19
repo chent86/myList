@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\AppX</LayoutDir>
-    <RegisteredManifestChecksum>CFEB7D51062FE95EB858A00BFAF9546822BACA043B8F3186B94C6F5770BFB44D</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>C8AD434ECC82E588067B427372B852CA256A38263A8B861CDAC9E3ABF7364C40</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>86674a98-5494-4b10-b2c7-32cf77b85c9b_1.0.0.0_x86__9sdw6ty2x539e</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>86674a98-5494-4b10-b2c7-32cf77b85c9b_9sdw6ty2x539e!App</RegisteredUserModeAppID>
     <RegisteredPackageID>86674a98-5494-4b10-b2c7-32cf77b85c9b</RegisteredPackageID>
@@ -31,43 +31,254 @@
     <AppXManifest Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-28T04:24:19.208</Modified>
+      <Modified>2018-04-18T15:18:48.557</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\LargeTile.scale-100.png">
+      <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.205</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\LargeTile.scale-125.png">
+      <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.236</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\LargeTile.scale-150.png">
+      <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.276</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\LargeTile.scale-200.png">
+      <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.347</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\LargeTile.scale-400.png">
+      <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.574</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-03-29T08:57:41.140</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\picture0.jpg">
+      <PackagePath>Assets\picture0.jpg</PackagePath>
+      <Modified>2018-03-29T08:57:41.149</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SmallTile.scale-100.png">
+      <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.807</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SmallTile.scale-125.png">
+      <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.816</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SmallTile.scale-150.png">
+      <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.827</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SmallTile.scale-200.png">
+      <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.838</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SmallTile.scale-400.png">
+      <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.863</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.779</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SplashScreen.scale-125.png">
+      <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.824</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SplashScreen.scale-150.png">
+      <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.886</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-04-10T08:28:13.999</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\SplashScreen.scale-400.png">
+      <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:14.692</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-100.png">
+      <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.875</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-125.png">
+      <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.888</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-150.png">
+      <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.905</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-04-10T08:28:12.925</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square150x150Logo.scale-400.png">
+      <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:12.986</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.692</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.747</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.708</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.717</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-100.png">
+      <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.582</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-125.png">
+      <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.591</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-150.png">
+      <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.600</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-04-10T08:28:13.610</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.scale-400.png">
+      <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.625</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-16.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.633</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-24.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.641</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-04-10T08:28:13.700</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\StoreLogo.png">
-      <PackagePath>Assets\StoreLogo.png</PackagePath>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-256.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-04-10T08:28:13.684</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-32.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.649</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Square44x44Logo.targetsize-48.png">
+      <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.657</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:14.702</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\StoreLogo.scale-125.png">
+      <PackagePath>Assets\StoreLogo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:14.712</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\StoreLogo.scale-150.png">
+      <PackagePath>Assets\StoreLogo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:14.722</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\StoreLogo.scale-200.png">
+      <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:14.734</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\StoreLogo.scale-400.png">
+      <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:14.757</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\test.jpg">
+      <PackagePath>Assets\test.jpg</PackagePath>
+      <Modified>2018-03-31T16:06:54.742</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\test1.jpg">
+      <PackagePath>Assets\test1.jpg</PackagePath>
+      <Modified>2018-03-31T16:08:30.553</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-100.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-125.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.017</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-150.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.039</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-08T05:17:02.587</Modified>
+      <Modified>2018-04-10T08:28:13.072</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\Wide310x150Logo.scale-400.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-10T08:28:13.179</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\Assets\wood.jpg">
+      <PackagePath>Assets\wood.jpg</PackagePath>
+      <Modified>2018-03-29T08:57:41.151</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
@@ -75,20 +286,32 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\myList.dll">
       <PackagePath>myList.dll</PackagePath>
-      <Modified>2018-03-28T04:24:19.051</Modified>
+      <Modified>2018-04-18T15:18:48.334</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\myList.exe">
       <PackagePath>myList.exe</PackagePath>
-      <Modified>2018-03-28T04:24:19.197</Modified>
+      <Modified>2018-04-18T15:18:48.546</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\myList.pdb">
       <PackagePath>myList.pdb</PackagePath>
-      <Modified>2018-03-28T04:24:19.195</Modified>
+      <Modified>2018-04-18T15:18:48.545</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-28T04:16:41.736</Modified>
+      <Modified>2018-04-18T15:18:17.866</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\sqlite3.dll">
+      <PackagePath>sqlite3.dll</PackagePath>
+      <Modified>2018-04-11T12:04:34.704</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\_Resources\0.rsrc">
+      <PackagePath>_Resources\0.rsrc</PackagePath>
+      <Modified>2018-04-18T15:18:38.727</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lenovo\Desktop\myList\myList\bin\x86\Release\ilc\_Resources\index.txt">
+      <PackagePath>_Resources\index.txt</PackagePath>
+      <Modified>2018-04-18T15:18:38.727</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

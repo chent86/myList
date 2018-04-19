@@ -54,6 +54,994 @@ using System.Runtime.InteropServices.WindowsRuntime;
 namespace __Interop
 {
 	/// <summary>
+	/// P/Invoke class for module 'sqlite3.dll'
+	/// </summary>
+	public unsafe static partial class sqlite3_dll
+	{
+		// Signature, sqlite3_win32_set_directory, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] uint__unsigned int, [fwd] [in] [Mcg.CodeGen.UnicodeStringMarshaller] string__wchar_t *, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_win32_set_directory")]
+		public static int sqlite3_win32_set_directory(
+					uint directoryType, 
+					string directoryPath)
+		{
+			// Setup
+			ushort* unsafe_directoryPath = default(ushort*);
+			int unsafe___value;
+			// Marshalling
+			fixed (char* pinned_directoryPath = directoryPath)
+			{
+				unsafe_directoryPath = (ushort*)pinned_directoryPath;
+				// Call to native method
+				unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_win32_set_directory(
+									directoryType, 
+									unsafe_directoryPath
+								);
+				global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			}
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_open, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [out] [managedbyref] [nativebyref] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_open")]
+		public static int sqlite3_open(
+					global::System.IntPtr filename, 
+					out global::System.IntPtr db)
+		{
+			// Setup
+			global::System.IntPtr unsafe_db;
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_open(
+								filename, 
+								&(unsafe_db)
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			db = unsafe_db;
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_open_v2, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [out] [managedbyref] [nativebyref] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_open_v2")]
+		public static int sqlite3_open_v2(
+					global::System.IntPtr filename, 
+					out global::System.IntPtr db, 
+					int flags, 
+					global::System.IntPtr zVfs)
+		{
+			// Setup
+			global::System.IntPtr unsafe_db;
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_open_v2(
+								filename, 
+								&(unsafe_db), 
+								flags, 
+								zVfs
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			db = unsafe_db;
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_close_v2, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_close_v2")]
+		public static int sqlite3_close_v2(global::System.IntPtr db)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_close_v2(db);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_prepare_v2, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [out] [managedbyref] [nativebyref] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_prepare_v2")]
+		public static int sqlite3_prepare_v2(
+					global::System.IntPtr db, 
+					global::System.IntPtr zSql, 
+					int nByte, 
+					out global::System.IntPtr ppStmpt, 
+					global::System.IntPtr pzTail)
+		{
+			// Setup
+			global::System.IntPtr unsafe_ppStmpt;
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_prepare_v2(
+								db, 
+								zSql, 
+								nByte, 
+								&(unsafe_ppStmpt), 
+								pzTail
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			ppStmpt = unsafe_ppStmpt;
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_create_function, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_create_function")]
+		public static int sqlite3_create_function(
+					global::System.IntPtr db, 
+					global::System.IntPtr functionName, 
+					int nArg, 
+					int p, 
+					global::System.IntPtr intPtr1, 
+					global::System.IntPtr func, 
+					global::System.IntPtr intPtr2, 
+					global::System.IntPtr intPtr3)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_create_function(
+								db, 
+								functionName, 
+								nArg, 
+								p, 
+								intPtr1, 
+								func, 
+								intPtr2, 
+								intPtr3
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_create_collation, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_create_collation")]
+		public static int sqlite3_create_collation(
+					global::System.IntPtr db, 
+					global::System.IntPtr collationName, 
+					int textRep, 
+					global::System.IntPtr app, 
+					global::System.IntPtr compare)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_create_collation(
+								db, 
+								collationName, 
+								textRep, 
+								app, 
+								compare
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_last_insert_rowid, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] long____int64, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_last_insert_rowid")]
+		public static long sqlite3_last_insert_rowid(global::System.IntPtr db)
+		{
+			// Setup
+			long unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_last_insert_rowid(db);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_errmsg, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_errmsg")]
+		public static global::System.IntPtr sqlite3_errmsg(global::System.IntPtr db)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_errmsg(db);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_int, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_int")]
+		public static int sqlite3_bind_int(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					int value)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_int(
+								stmHandle, 
+								iParam, 
+								value
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_int64, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] long____int64, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_int64")]
+		public static int sqlite3_bind_int64(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					long value)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_int64(
+								stmHandle, 
+								iParam, 
+								value
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_text, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_text")]
+		public static int sqlite3_bind_text(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					global::System.IntPtr value, 
+					int length, 
+					global::System.IntPtr destructor)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_text(
+								stmHandle, 
+								iParam, 
+								value, 
+								length, 
+								destructor
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_double, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] double__double, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_double")]
+		public static int sqlite3_bind_double(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					double value)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_double(
+								stmHandle, 
+								iParam, 
+								value
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_blob, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableArrayMarshaller] rg_byte__unsigned char *, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_blob")]
+		public static int sqlite3_bind_blob(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					byte[] value, 
+					int length, 
+					global::System.IntPtr destructor)
+		{
+			// Setup
+			byte* unsafe_value;
+			int unsafe___value;
+			// Marshalling
+			fixed (byte* pinned_value = global::__Interop.McgHelpers.GetArrayForCompat(value))
+			{
+				unsafe_value = (byte*)pinned_value;
+				// Call to native method
+				unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_blob(
+									stmHandle, 
+									iParam, 
+									unsafe_value, 
+									length, 
+									destructor
+								);
+				global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			}
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_null, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_null")]
+		public static int sqlite3_bind_null(
+					global::System.IntPtr stmHandle, 
+					int iParam)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_null(
+								stmHandle, 
+								iParam
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_parameter_count, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_parameter_count")]
+		public static int sqlite3_bind_parameter_count(global::System.IntPtr stmHandle)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_parameter_count(stmHandle);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_parameter_name, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_parameter_name")]
+		public static global::System.IntPtr sqlite3_bind_parameter_name(
+					global::System.IntPtr stmHandle, 
+					int iParam)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_parameter_name(
+								stmHandle, 
+								iParam
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_bind_parameter_index, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_bind_parameter_index")]
+		public static int sqlite3_bind_parameter_index(
+					global::System.IntPtr stmHandle, 
+					global::System.IntPtr paramName)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_bind_parameter_index(
+								stmHandle, 
+								paramName
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_step, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_step")]
+		public static int sqlite3_step(global::System.IntPtr stmHandle)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_step(stmHandle);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_int, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_int")]
+		public static int sqlite3_column_int(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_int(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_int64, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] long____int64, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_int64")]
+		public static long sqlite3_column_int64(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			long unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_int64(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_text, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_text")]
+		public static global::System.IntPtr sqlite3_column_text(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_text(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_double, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] double__double, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_double")]
+		public static double sqlite3_column_double(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			double unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_double(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_blob, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_blob")]
+		public static global::System.IntPtr sqlite3_column_blob(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_blob(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_type, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_type")]
+		public static int sqlite3_column_type(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_type(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_bytes, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_bytes")]
+		public static int sqlite3_column_bytes(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_bytes(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_count, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_count")]
+		public static int sqlite3_column_count(global::System.IntPtr stmHandle)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_count(stmHandle);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_name, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_name")]
+		public static global::System.IntPtr sqlite3_column_name(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_name(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_origin_name, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_origin_name")]
+		public static global::System.IntPtr sqlite3_column_origin_name(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_origin_name(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_table_name, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_table_name")]
+		public static global::System.IntPtr sqlite3_column_table_name(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_table_name(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_column_database_name, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_column_database_name")]
+		public static global::System.IntPtr sqlite3_column_database_name(
+					global::System.IntPtr stmHandle, 
+					int iCol)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_column_database_name(
+								stmHandle, 
+								iCol
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_data_count, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_data_count")]
+		public static int sqlite3_data_count(global::System.IntPtr stmHandle)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_data_count(stmHandle);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_reset, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_reset")]
+		public static int sqlite3_reset(global::System.IntPtr stmHandle)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_reset(stmHandle);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_clear_bindings, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_clear_bindings")]
+		public static int sqlite3_clear_bindings(global::System.IntPtr stmHandle)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_clear_bindings(stmHandle);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_finalize, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_finalize")]
+		public static int sqlite3_finalize(global::System.IntPtr stmHandle)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_finalize(stmHandle);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_value_int, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_value_int")]
+		public static int sqlite3_value_int(global::System.IntPtr value)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_value_int(value);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_value_int64, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] long____int64, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_value_int64")]
+		public static long sqlite3_value_int64(global::System.IntPtr value)
+		{
+			// Setup
+			long unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_value_int64(value);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_value_text, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_value_text")]
+		public static global::System.IntPtr sqlite3_value_text(global::System.IntPtr value)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_value_text(value);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_value_double, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] double__double, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_value_double")]
+		public static double sqlite3_value_double(global::System.IntPtr value)
+		{
+			// Setup
+			double unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_value_double(value);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_value_blob, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_value_blob")]
+		public static global::System.IntPtr sqlite3_value_blob(global::System.IntPtr value)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_value_blob(value);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_value_type, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_value_type")]
+		public static int sqlite3_value_type(global::System.IntPtr value)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_value_type(value);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_value_bytes, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_value_bytes")]
+		public static int sqlite3_value_bytes(global::System.IntPtr value)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_value_bytes(value);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_result_int, [fwd] [return] [Mcg.CodeGen.VoidReturnMarshaller] void__void, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_result_int")]
+		public static void sqlite3_result_int(
+					global::System.IntPtr context, 
+					int value)
+		{
+			// Marshalling
+			// Call to native method
+			global::__Interop.sqlite3_dll_PInvokes.sqlite3_result_int(
+								context, 
+								value
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+		}
+
+		// Signature, sqlite3_result_int64, [fwd] [return] [Mcg.CodeGen.VoidReturnMarshaller] void__void, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] long____int64, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_result_int64")]
+		public static void sqlite3_result_int64(
+					global::System.IntPtr context, 
+					long value)
+		{
+			// Marshalling
+			// Call to native method
+			global::__Interop.sqlite3_dll_PInvokes.sqlite3_result_int64(
+								context, 
+								value
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+		}
+
+		// Signature, sqlite3_result_text, [fwd] [return] [Mcg.CodeGen.VoidReturnMarshaller] void__void, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_result_text")]
+		public static void sqlite3_result_text(
+					global::System.IntPtr context, 
+					global::System.IntPtr value, 
+					int length, 
+					global::System.IntPtr destructor)
+		{
+			// Marshalling
+			// Call to native method
+			global::__Interop.sqlite3_dll_PInvokes.sqlite3_result_text(
+								context, 
+								value, 
+								length, 
+								destructor
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+		}
+
+		// Signature, sqlite3_result_double, [fwd] [return] [Mcg.CodeGen.VoidReturnMarshaller] void__void, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] double__double, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_result_double")]
+		public static void sqlite3_result_double(
+					global::System.IntPtr context, 
+					double value)
+		{
+			// Marshalling
+			// Call to native method
+			global::__Interop.sqlite3_dll_PInvokes.sqlite3_result_double(
+								context, 
+								value
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+		}
+
+		// Signature, sqlite3_result_blob, [fwd] [return] [Mcg.CodeGen.VoidReturnMarshaller] void__void, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableArrayMarshaller] rg_byte__unsigned char *, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_result_blob")]
+		public static void sqlite3_result_blob(
+					global::System.IntPtr context, 
+					byte[] value, 
+					int length, 
+					global::System.IntPtr destructor)
+		{
+			// Setup
+			byte* unsafe_value;
+			// Marshalling
+			fixed (byte* pinned_value = global::__Interop.McgHelpers.GetArrayForCompat(value))
+			{
+				unsafe_value = (byte*)pinned_value;
+				// Call to native method
+				global::__Interop.sqlite3_dll_PInvokes.sqlite3_result_blob(
+									context, 
+									unsafe_value, 
+									length, 
+									destructor
+								);
+				global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			}
+			// Return
+		}
+
+		// Signature, sqlite3_result_null, [fwd] [return] [Mcg.CodeGen.VoidReturnMarshaller] void__void, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_result_null")]
+		public static void sqlite3_result_null(global::System.IntPtr context)
+		{
+			// Marshalling
+			// Call to native method
+			global::__Interop.sqlite3_dll_PInvokes.sqlite3_result_null(context);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+		}
+
+		// Signature, sqlite3_result_error, [fwd] [return] [Mcg.CodeGen.VoidReturnMarshaller] void__void, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_result_error")]
+		public static void sqlite3_result_error(
+					global::System.IntPtr context, 
+					global::System.IntPtr value, 
+					int length)
+		{
+			// Marshalling
+			// Call to native method
+			global::__Interop.sqlite3_dll_PInvokes.sqlite3_result_error(
+								context, 
+								value, 
+								length
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+		}
+
+		// Signature, sqlite3_aggregate_context, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] int__int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_aggregate_context")]
+		public static global::System.IntPtr sqlite3_aggregate_context(
+					global::System.IntPtr context, 
+					int length)
+		{
+			// Setup
+			global::System.IntPtr unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_aggregate_context(
+								context, 
+								length
+							);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+
+		// Signature, sqlite3_changes, [fwd] [return] [Mcg.CodeGen.BlittableValueMarshaller] int__int, [fwd] [in] [Mcg.CodeGen.BlittableValueMarshaller] System_IntPtr____w64 int, 
+		[global::System.Runtime.InteropServices.McgGeneratedMarshallingCode]
+		[global::System.Runtime.InteropServices.McgPInvokeMarshalStub("SQLitePCL.Ext, Version=3.8.7.2, Culture=neutral, PublicKeyToken=bddade01e9c850c5", "SQLitePCL.SQLite3Provider+NativeMethods", "sqlite3_changes")]
+		public static int sqlite3_changes(global::System.IntPtr db)
+		{
+			// Setup
+			int unsafe___value;
+			// Marshalling
+			// Call to native method
+			unsafe___value = global::__Interop.sqlite3_dll_PInvokes.sqlite3_changes(db);
+			global::System.Runtime.InteropServices.DebugAnnotations.PreviousCallContainsUserCode();
+			// Return
+			return unsafe___value;
+		}
+	}
+
+	/// <summary>
 	/// P/Invoke class for module '[MRT]'
 	/// </summary>
 	public unsafe static partial class _MRT_
@@ -387,6 +1375,305 @@ namespace __Interop
 				global::System.Runtime.InteropServices.McgMarshal.ComSafeRelease(new global::System.IntPtr(((void*)unsafe_bufferMarshalerPtr)));
 			}
 		}
+	}
+
+	public unsafe static partial class sqlite3_dll_PInvokes
+	{
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_win32_set_directory(
+					uint directoryType, 
+					ushort* directoryPath);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_open(
+					global::System.IntPtr filename, 
+					global::System.IntPtr* db);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_open_v2(
+					global::System.IntPtr filename, 
+					global::System.IntPtr* db, 
+					int flags, 
+					global::System.IntPtr zVfs);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_close_v2(global::System.IntPtr db);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_prepare_v2(
+					global::System.IntPtr db, 
+					global::System.IntPtr zSql, 
+					int nByte, 
+					global::System.IntPtr* ppStmpt, 
+					global::System.IntPtr pzTail);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_create_function(
+					global::System.IntPtr db, 
+					global::System.IntPtr functionName, 
+					int nArg, 
+					int p, 
+					global::System.IntPtr intPtr1, 
+					global::System.IntPtr func, 
+					global::System.IntPtr intPtr2, 
+					global::System.IntPtr intPtr3);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_create_collation(
+					global::System.IntPtr db, 
+					global::System.IntPtr collationName, 
+					int textRep, 
+					global::System.IntPtr app, 
+					global::System.IntPtr compare);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static long sqlite3_last_insert_rowid(global::System.IntPtr db);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_errmsg(global::System.IntPtr db);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_bind_int(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					int value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_bind_int64(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					long value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_bind_text(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					global::System.IntPtr value, 
+					int length, 
+					global::System.IntPtr destructor);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_bind_double(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					double value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_bind_blob(
+					global::System.IntPtr stmHandle, 
+					int iParam, 
+					byte* value, 
+					int length, 
+					global::System.IntPtr destructor);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_bind_null(
+					global::System.IntPtr stmHandle, 
+					int iParam);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_bind_parameter_count(global::System.IntPtr stmHandle);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_bind_parameter_name(
+					global::System.IntPtr stmHandle, 
+					int iParam);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_bind_parameter_index(
+					global::System.IntPtr stmHandle, 
+					global::System.IntPtr paramName);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_step(global::System.IntPtr stmHandle);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_column_int(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static long sqlite3_column_int64(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_column_text(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static double sqlite3_column_double(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_column_blob(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_column_type(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_column_bytes(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_column_count(global::System.IntPtr stmHandle);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_column_name(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_column_origin_name(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_column_table_name(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_column_database_name(
+					global::System.IntPtr stmHandle, 
+					int iCol);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_data_count(global::System.IntPtr stmHandle);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_reset(global::System.IntPtr stmHandle);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_clear_bindings(global::System.IntPtr stmHandle);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_finalize(global::System.IntPtr stmHandle);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_value_int(global::System.IntPtr value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static long sqlite3_value_int64(global::System.IntPtr value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_value_text(global::System.IntPtr value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static double sqlite3_value_double(global::System.IntPtr value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_value_blob(global::System.IntPtr value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_value_type(global::System.IntPtr value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_value_bytes(global::System.IntPtr value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static void sqlite3_result_int(
+					global::System.IntPtr context, 
+					int value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static void sqlite3_result_int64(
+					global::System.IntPtr context, 
+					long value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static void sqlite3_result_text(
+					global::System.IntPtr context, 
+					global::System.IntPtr value, 
+					int length, 
+					global::System.IntPtr destructor);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static void sqlite3_result_double(
+					global::System.IntPtr context, 
+					double value);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static void sqlite3_result_blob(
+					global::System.IntPtr context, 
+					byte* value, 
+					int length, 
+					global::System.IntPtr destructor);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static void sqlite3_result_null(global::System.IntPtr context);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static void sqlite3_result_error(
+					global::System.IntPtr context, 
+					global::System.IntPtr value, 
+					int length);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static global::System.IntPtr sqlite3_aggregate_context(
+					global::System.IntPtr context, 
+					int length);
+
+		[global::System.Runtime.InteropServices.McgGeneratedNativeCallCode]
+		[global::System.Runtime.InteropServices.DllImport("sqlite3.dll", CallingConvention=global::System.Runtime.InteropServices.CallingConvention.Cdecl)]
+		public extern static int sqlite3_changes(global::System.IntPtr db);
 	}
 
 	public unsafe static partial class _MRT__PInvokes
